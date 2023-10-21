@@ -23,7 +23,8 @@ async def on_startup(_):
 
 @dp.message_handler(Command('start'))
 async def send_welcome(message: types.Message):
-    await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
+    await message.answer("Выберите действие:", reply_markup=create_main_menu_keyboard(message.from_user.id))
+    await sql_manager.check_for_table_existence(message.from_user.id)
 
 
 @dp.message_handler(Command('Активы'))
@@ -54,9 +55,10 @@ async def get_stock_name(message: types.Message, state: FSMContext):
             data['stock_name'] = answer
         await FSM_Assets.next()
         await message.answer("Количество:", reply_markup=cancel_keyboard)
+
     else:
         await state.reset_state(with_data=False)
-        await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
+        await send_welcome(message)
 
 
 @dp.message_handler(state=FSM_Assets.quantity)
@@ -66,11 +68,13 @@ async def get_quantity(message: types.Message, state: FSMContext):
     if answer != cancel_button.text:
         try:
             async with state.proxy() as data:
-                await sql_manager.insert_into_assets(data['stock_name'], int(answer))
+                await sql_manager.insert_into_assets(message.from_user.id, data['stock_name'], int(answer))
             await message.answer("Добавлено")
+
         except ValueError:
             await message.answer(text="Необходимо число")
-    await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
+
+    await send_welcome(message)
     await state.reset_state(with_data=False)
 
 
@@ -85,13 +89,15 @@ async def get_spent_amount(message: types.Message, state: FSMContext):
                 data['spent_amount'] = int(answer)
             await FSM_Spending.next()
             await message.answer("Выберите категорию:", reply_markup=cancel_keyboard)
+
         except ValueError:
             await message.answer(text="Необходимо число")
-            await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
+            await send_welcome(message)
             await state.reset_state(with_data=False)
+
     else:
         await state.reset_state(with_data=False)
-        await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
+        await send_welcome(message)
 
 
 @dp.message_handler(state=FSM_Spending.category)
@@ -102,8 +108,9 @@ async def get_category(message: types.Message, state: FSMContext):
             data['category'] = answer
         await FSM_Spending.next()
         await message.answer("Что вы купили:", reply_markup=cancel_keyboard)
+
     else:
-        await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
+        await send_welcome(message)
         await state.reset_state(with_data=False)
 
 
@@ -112,9 +119,10 @@ async def get_commentary(message: types.Message, state: FSMContext):
     answer = message.text
     if answer != cancel_button.text:
         async with state.proxy() as data:
-            await sql_manager.insert_into_spending(data['spent_amount'], data['category'], answer)
+            await sql_manager.insert_into_spending(message.from_user.id, data['spent_amount'], data['category'], answer)
+        await message.answer("Добавлено")
 
-    await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
+    await send_welcome(message)
     await state.reset_state(with_data=False)
 
 
@@ -123,14 +131,14 @@ async def get_cash_amount(message: types.Message, state: FSMContext):
     answer = message.text
     try:
         if answer != cancel_button.text:
-            await sql_manager.insert_into_assets('rub', int(answer))
+            await sql_manager.insert_into_assets(message.from_user.id, 'rub', int(answer))
             await message.answer("Добавлено")
 
-        await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
-        await state.reset_state(with_data=False)
     except ValueError:
         await message.answer(text="Необходимо число")
-        await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
+
+    finally:
+        await send_welcome(message)
         await state.reset_state(with_data=False)
 
 
