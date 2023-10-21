@@ -64,10 +64,12 @@ async def get_quantity(message: types.Message, state: FSMContext):
     answer = message.text
 
     if answer != cancel_button.text:
-        async with state.proxy() as data:
-            await sql_manager.insert_into_assets(data['stock_name'], int(answer))
-        await message.answer("Добавлено")
-
+        try:
+            async with state.proxy() as data:
+                await sql_manager.insert_into_assets(data['stock_name'], int(answer))
+            await message.answer("Добавлено")
+        except ValueError:
+            await message.answer(text="Необходимо число")
     await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
     await state.reset_state(with_data=False)
 
@@ -78,10 +80,15 @@ async def get_spent_amount(message: types.Message, state: FSMContext):
     answer = message.text
 
     if answer != cancel_button.text:
-        async with state.proxy() as data:
-            data['spent_amount'] = int(answer)
-        await FSM_Spending.next()
-        await message.answer("Выберите категорию:", reply_markup=cancel_keyboard)
+        try:
+            async with state.proxy() as data:
+                data['spent_amount'] = int(answer)
+            await FSM_Spending.next()
+            await message.answer("Выберите категорию:", reply_markup=cancel_keyboard)
+        except ValueError:
+            await message.answer(text="Необходимо число")
+            await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
+            await state.reset_state(with_data=False)
     else:
         await state.reset_state(with_data=False)
         await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
@@ -114,13 +121,17 @@ async def get_commentary(message: types.Message, state: FSMContext):
 @dp.message_handler(state=FSM_Cash.cash)
 async def get_cash_amount(message: types.Message, state: FSMContext):
     answer = message.text
+    try:
+        if answer != cancel_button.text:
+            await sql_manager.insert_into_assets('rub', int(answer))
+            await message.answer("Добавлено")
 
-    if answer != cancel_button.text:
-        await sql_manager.insert_into_assets('rub', int(answer))
-        await message.answer("Добавлено")
-
-    await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
-    await state.reset_state(with_data=False)
+        await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
+        await state.reset_state(with_data=False)
+    except ValueError:
+        await message.answer(text="Необходимо число")
+        await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
+        await state.reset_state(with_data=False)
 
 
 if __name__ == "__main__":
