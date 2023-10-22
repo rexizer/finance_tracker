@@ -119,6 +119,8 @@ async def get_commentary(message: types.Message, state: FSMContext):
     answer = message.text
     if answer != cancel_button.text:
         async with state.proxy() as data:
+            await sql_manager.change_quantity_minus(message.from_user.id, data['spent_amount'])
+        async with state.proxy() as data:
             await sql_manager.insert_into_spending(message.from_user.id, data['spent_amount'], data['category'], answer)
         await message.answer("Добавлено")
 
@@ -131,7 +133,7 @@ async def get_cash_amount(message: types.Message, state: FSMContext):
     answer = message.text
     try:
         if answer != cancel_button.text:
-            await sql_manager.insert_into_assets(message.from_user.id, 'rub', int(answer))
+            await sql_manager.change_quantity(message.from_user.id, int(answer))
             await message.answer("Добавлено")
 
     except ValueError:
