@@ -32,3 +32,16 @@ async def insert_into_spending(user_id, spending, category, commentary):
     await check_for_table_existence(user_id)
     await sql.execute(f"INSERT INTO spending_{user_id} VALUES(?, ?, ?, ?)", (f"{datetime.now()}", spending, category, commentary))
     await db.commit()
+
+
+
+async def change_quantity(user_id, quantity):
+    await sql.execute(f"UPDATE assets_{user_id} SET quantity = quantity + {quantity} WHERE stock_name = 'rub'")
+    await db.commit()
+
+async def change_quantity_minus(user_id, quantity):
+    await sql.execute(f"UPDATE assets_{user_id} SET quantity = quantity + {quantity * (-1)} WHERE stock_name = 'rub'")
+    await db.commit()
+
+
+
