@@ -27,15 +27,18 @@ async def check_for_tables_existence(user_id):
 
     await sql.execute(f"SELECT EXISTS(SELECT stock_name FROM assets_{user_id} WHERE stock_name ='rub' LIMIT 1)")
     if (await sql.fetchone())[0] == 0:
-        await insert_into_assets(user_id, 'rub', 0)
+        await sql.execute(f"INSERT INTO assets_{user_id} VALUES(?, ?)", ('rub', 0))
+        await db.commit()
 
     await db.commit()
 
 
 async def insert_into_assets(user_id, stock_name, quantity):
-    await sql.execute(f"INSERT INTO assets_{user_id} VALUES(?, ?)", (f"{stock_name}", quantity))
+    await sql.execute(f"SELECT EXISTS(SELECT stock_name FROM assets_{user_id} WHERE stock_name = '{stock_name}' LIMIT 1)")
+    if (await sql.fetchone())[0] == 0:
+        await sql.execute(f"INSERT INTO assets_{user_id} VALUES(?, ?)", (f"{stock_name}", 0))
+    await sql.execute(f"UPDATE assets_{user_id} SET quantity = quantity + {quantity} WHERE stock_name = '{stock_name}'")
     await db.commit()
-
 
 async def insert_into_spending(user_id, spending, category, commentary):
     await sql.execute(f"INSERT INTO spending_{user_id} VALUES(?, ?, ?, ?)",
