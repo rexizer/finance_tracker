@@ -9,8 +9,9 @@ class FSM_Assets(StatesGroup):
 class FSM_Spending(StatesGroup):
     spent_amount = State()
     category = State()
-    commentary = State()
     answer = State()
+    commentary = State()
+    
 
 
 class FSM_Cash(StatesGroup):

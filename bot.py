@@ -114,6 +114,9 @@ async def get_category(message: types.Message, state: FSMContext):
             if answer not in category_check:
                 await message.answer("Будете добавлять категорию в клавиатуру ?",reply_markup=markup4)
                 await FSM_Spending.next()
+            else:
+                await message.answer("Что вы купили:", reply_markup=cancel_keyboard)
+                await FSM_Spending.last()
     else:
         await send_welcome(message)
         await state.reset_state(with_data=False)
@@ -130,9 +133,8 @@ async def get_answer(message: types.Message, state: FSMContext):
                 await message.answer("Что вы купили:", reply_markup=cancel_keyboard)
 
             if message.text == "Нет":
-                await FSM_Spending.next()
+                await FSM_Spending.last()
                 await message.answer("Что вы купили:", reply_markup=cancel_keyboard)
-
     else:
         await send_welcome(message)
         await state.reset_state(with_data=False)
