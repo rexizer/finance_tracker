@@ -4,98 +4,92 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
   <link rel="stylesheet" href="css.css">
+  <link rel="stylesheet" href="slider.css">
 </head>
 <body>
   <header>
     <h1>Статистика</h1>
-    <div class="blocks">
-      <div class="block">
-        <div id="chart" class="chart-container"></div>
-        <div class="block__title">7775 Р</div>
-        <div class="block__text">Расходы за октябрь</div>
-      </div>
-    
-      <div class="block">
-        <img src="assets/images/1.png" alt="">
-        <div class="block__title">7775 Р</div>
-        <div class="block__text">Расходы за октябрь</div>
-      </div>
-
-      <div class="block">
-        <img src="assets/images/3.png" alt="">
-        <div class="block__title">7775 Р</div>
-        <div class="block__text">Расходы за октябрь</div>
-      </div>
-
-      <div class="block">
-        <div id="chart" class="chart-container"></div>
-        <div class="block__title">7775 Р</div>
-        <div class="block__text">Расходы за октябрь</div>
-      </div>
-
-      <div class="block">
-        <img src="assets/images/2.png" alt="" style="height: 40px; margin: 5px 0">
-        <div class="block__title">7775 Р</div>
-        <div class="block__text">Расходы за октябрь</div>
-      </div>
-  </div>
-
+    <div class="blocks slider-nav"></div>
   </header>
   <main>
-      <div class="wrapper">
-          <h1 class="wrapper-title">Creative Coding Club - Member Stats</h1>
-          <div class="pie-charts">
-              <div class="pieID--operations pie-chart--wrapper">
-                  <h2>Interests</h2>
-                  <div class="pie-chart">
-                      <div class="pie-chart__pie"></div>
-                      <ul class="pie-chart__legend">
-                          <li><em>CSS Animations</em><span>314</span></li>
-                          <li><em>SVG Animation + Interactivity</em><span>254</span></li>
-                          <li><em>Vanilla Javascript</em><span>253</span></li>
-                          <li><em>Custom SVG Illustration</em><span>204</span></li>
-                          <li><em>Greensock Animation Library</em><span>145</span></li>
-                          <li><em>Animation With React</em><span>122</span></li>
-                          <li><em>HTML5 Canvas</em><span>122</span></li>
-                          <li><em>Mo.js Animation Library</em><span>107</span></li>
-                          <li><em>D3.JS Data Visualization</em><span>95</span></li>
-                          <li><em>THREE.JS</em><span>85</span></li>
-                          <li><em>Web Animation API</em><span>73</span></li>
-                          <li><em>Storyboarding for Web Animation</em><span>59</span></li>
-                      </ul>
-                  </div>
-              </div>
-
-              <div class="pieID--region pie-chart--wrapper">
-                  <h2>Region</h2>
-                  <div class="pie-chart">
-                      <div class="pie-chart__pie"></div>
-                      <ul class="pie-chart__legend">
-                          <li><em>North America</em><span>367</span></li>
-                          <li><em>Western Europe</em><span>66</span></li>
-                          <li><em>Asia</em><span>53</span></li>
-                          <li><em>Latin America & Caribbean</em><span>19</span></li>
-                          <li><em>Australia & New Zealand</em><span>16</span></li>
-                          <li><em>Russian Commonwealth</em><span>13</span></li>
-                          <li><em>Eastern Europe</em><span>13</span></li>
-                          <li><em>Middle East</em><span>9</span></li>
-                          <li><em>South Africa</em><span>7</span></li>
-                          <li><em>North Africa</em><span>6</span></li>
-                          <li><em>Baltics</em><span>2</span></li>
-                      </ul>
-                  </div>
-              </div>
+    <div class="wrappers slider-for">
+      <!-- <div class="wrapper">
+        <h1 class="wrapper-title">111Creative Coding Club - Member Stats</h1>
+        <div class="pie-charts">
+          <div class="pieID--operations pie-chart--wrapper">
+            <h2>Interests</h2>
+            <div class="pie-chart">
+              <div class="pie-chart__pie"></div>
+              <ul class="pie-chart__legend"></ul>
+            </div>
           </div>
+          
+          <div class="pieID--region pie-chart--wrapper">
+            <h2>Region</h2>
+            <div class="pie-chart">
+              <div class="pie-chart__pie"></div>
+              <ul class="pie-chart__legend"></ul>
+            </div>
+          </div>
+        </div>
       </div>
+      
+      <div class="wrapper">
+        <h1 class="wrapper-title">222Creative Coding Club - Member Stats</h1>
+        <div class="pie-charts">
+          <div class="pieID--operations pie-chart--wrapper">
+            <h2>Interests</h2>
+            <div class="pie-chart">
+              <div class="pie-chart__pie"></div>
+              <ul class="pie-chart__legend"></ul>
+            </div>
+          </div>
+          
+          <div class="pieID--region pie-chart--wrapper">
+            <h2>Region</h2>
+            <div class="pie-chart">
+              <div class="pie-chart__pie"></div>
+              <ul class="pie-chart__legend"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper">
+        <h1 class="wrapper-title">333Creative Coding Club - Member Stats</h1>
+        <div class="pie-charts">
+          <div class="pieID--operations pie-chart--wrapper">
+            <h2>Interests</h2>
+            <div class="pie-chart">
+              <div class="pie-chart__pie"></div>
+              <ul class="pie-chart__legend"></ul>
+            </div>
+          </div>
+          
+          <div class="pieID--region pie-chart--wrapper">
+            <h2>Region</h2>
+            <div class="pie-chart">
+              <div class="pie-chart__pie"></div>
+              <ul class="pie-chart__legend"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
   </main>
+  
   <footer></footer>
 
 
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+  <!-- Include your other scripts here -->
+  <script type="text/javascript" src="data.js"></script>
+  <script type="text/javascript" src="1.js"></script>
+  <script type="text/javascript" src="2.js"></script>
+  <script type="text/javascript" src="slick.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="1.js"></script>
-  <script src="2.js"></script>
 </body>
 </html>
