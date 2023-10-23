@@ -88,7 +88,8 @@ async def get_spent_amount(message: types.Message, state: FSMContext):
             async with state.proxy() as data:
                 data['spent_amount'] = int(answer)
             await FSM_Spending.next()
-            await message.answer("Выберите категорию:", reply_markup=cancel_keyboard)
+            categories = await sql_manager.get_categories(message.from_user.id)
+            await message.answer("Выберите категорию:", reply_markup=create_categories_keyboard(categories))
 
         except ValueError:
             await message.answer(text="Необходимо число")
@@ -106,6 +107,7 @@ async def get_category(message: types.Message, state: FSMContext):
     if answer != cancel_button.text:
         async with state.proxy() as data:
             data['category'] = answer
+            await sql_manager.insert_into_categories(message.from_user.id,answer)
         await FSM_Spending.next()
         await message.answer("Что вы купили:", reply_markup=cancel_keyboard)
 

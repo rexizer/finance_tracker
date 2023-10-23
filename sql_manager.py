@@ -21,6 +21,12 @@ async def check_for_table_existence(user_id):
             quantity BIGINT
         )""")
 
+    await sql.execute(f"""CREATE TABLE IF NOT EXISTS categories_{user_id} (
+            category TEXT
+        )""")
+    
+    await db.commit()
+
 
 async def insert_into_assets(user_id, stock_name, quantity):
     await check_for_table_existence(user_id)
@@ -39,9 +45,22 @@ async def change_quantity(user_id, quantity):
     await sql.execute(f"UPDATE assets_{user_id} SET quantity = quantity + {quantity} WHERE stock_name = 'rub'")
     await db.commit()
 
+
 async def change_quantity_minus(user_id, quantity):
     await sql.execute(f"UPDATE assets_{user_id} SET quantity = quantity + {quantity * (-1)} WHERE stock_name = 'rub'")
     await db.commit()
 
+async def insert_into_categories(user_id,category):
+    await check_for_table_existence(user_id)
+    categories = await get_categories(user_id)
+    if category not in categories:
+        await sql.execute(f"INSERT INTO categories_{user_id} VALUES(?)", (category,))
+        await db.commit()
+
+
+async def get_categories(user_id):
+    await sql.execute(f"SELECT category FROM categories_{user_id}")
+    categories = await sql.fetchall()
+    return [category[0] for category in categories]
 
 

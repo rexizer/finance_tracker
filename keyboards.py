@@ -14,9 +14,17 @@ def create_main_menu_keyboard(user_id):
     return main_menu_keyboard
 
 
-categories_keyboard = ReplyKeyboardMarkup(row_width=1, resize_keyboard=True,
-                                          input_field_placeholder="Выберите категорию")
-
 cancel_keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
 cancel_button = KeyboardButton(text="Отменить")
 cancel_keyboard.add(cancel_button)
+
+
+def create_categories_keyboard(categories):
+    categories_keyboard = ReplyKeyboardMarkup(row_width=1, resize_keyboard=True, input_field_placeholder="Выберите "
+                                                                                                         "категорию")
+    for category in categories:
+        category_button = KeyboardButton(text=category)
+        categories_keyboard.add(category_button)
+
+    categories_keyboard.add(cancel_button)
+    return categories_keyboard
