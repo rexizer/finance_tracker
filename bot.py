@@ -110,9 +110,28 @@ async def get_category(message: types.Message, state: FSMContext):
     if answer != cancel_button.text:
         async with state.proxy() as data:
             data['category'] = answer
-            await sql_manager.insert_into_categories(message.from_user.id, answer)
-        await FSM_Spending.next()
-        await message.answer("Что вы купили:", reply_markup=cancel_keyboard)
+            category_check =  await sql_manager.get_categories(message.from_user.id)
+            if answer not in category_check:
+                await message.answer("Будете добавлять категорию в клавиатуру ?",reply_markup=markup4)
+                await FSM_Spending.next()
+    else:
+        await send_welcome(message)
+        await state.reset_state(with_data=False)
+
+
+@dp.message_handler(state=FSM_Spending.answer)
+async def get_answer(message: types.Message, state: FSMContext):
+    answer = message.text
+    if answer != cancel_button.text:
+        async with state.proxy() as data:
+            if answer == "Да":
+                await sql_manager.insert_into_categories(message.from_user.id, data['category'])
+                await FSM_Spending.next()
+                await message.answer("Что вы купили:", reply_markup=cancel_keyboard)
+
+            if message.text == "Нет":
+                await FSM_Spending.next()
+                await message.answer("Что вы купили:", reply_markup=cancel_keyboard)
 
     else:
         await send_welcome(message)

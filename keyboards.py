@@ -29,3 +29,10 @@ def create_categories_keyboard(categories):
     categories_keyboard.add(cancel_button)
 
     return categories_keyboard
+
+markup4 = ReplyKeyboardMarkup(resize_keyboard=True)
+button1 = KeyboardButton('Да')
+button2 = KeyboardButton('Нет')
+markup4.row(
+    button1, button2
+)
