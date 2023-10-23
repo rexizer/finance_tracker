@@ -30,44 +30,40 @@ function iterateSlices(id, sliceSize, pieElement, offset, dataCount, sliceCount,
   }
 }
 
-function createPie(id) {
-  var
-    listData      = [],
-    listTotal     = 0,
-    offset        = 0,
-    i             = 0,
-    pieElement    = id + " .pie-chart__pie"
-    dataElement   = id + " .pie-chart__legend"
+function createPie(pieChartElement, categoryData) {
+  const listData = categoryData.map(item => item.count);
+  const listTotal = listData.reduce((total, count) => total + count, 0);
+  let offset = 0;
+  let i = 0;
+  const pieElement = pieChartElement.querySelector('.pie-chart__pie');
+  const dataElement = pieChartElement.querySelector('.pie-chart__legend');
+  const color = [
+    "rgb(187,228,255)",
+    "rgb(2,166,209)",
+    "rgb(5,116,206)",
+    "rgb(239,71,111)",
+    "rgb(255,209,102)",
+    "rgb(6,214,160)",
+    "rgb(172,78,221)",
+    "rgb(255,140,62)",
+    "rgb(0,188,212)",
+    "rgb(194,24,91)",
+    "rgb(230,74,25)",
+    "rgb(103,58,183)"
+  ];
 
-    color         = [
-      "rgb(187,228,255)",
-      "rgb(2,166,209)",
-      "rgb(5,116,206)",
-      "rgb(239,71,111)",
-      "rgb(255,209,102)",
-      "rgb(6,214,160)",
-      "rgb(172,78,221)",
-      "rgb(255,140,62)",
-      "rgb(0,188,212)",
-      "rgb(194,24,91)",
-      "rgb(230,74,25)",
-      "rgb(103,58,183)"
-    ];
+  color = shuffle(color);
 
-  color = shuffle( color );
+  dataElement.innerHTML = ''; // Очищаем элемент .pie-chart__legend
 
-  $(dataElement+" span").each(function() {
-    listData.push(Number($(this).html()));
-  });
-
-  for(i = 0; i < listData.length; i++) {
-    listTotal += listData[i];
-  }
-
-  for(i=0; i < listData.length; i++) {
-    var size = sliceSize(listData[i], listTotal);
-    iterateSlices(id, size, pieElement, offset, i, 0, color[i]);
-    $(dataElement + " li:nth-child(" + (i + 1) + ")").css("border-color", color[i]);
+  for (i = 0; i < listData.length; i++) {
+    const size = sliceSize(listData[i], listTotal);
+    iterateSlices(pieChartElement, size, pieElement, offset, i, 0, color[i]);
+    // Создаем элементы span в .pie-chart__legend и заполняем их данными
+    const legendItem = document.createElement('li');
+    legendItem.innerHTML = "<span>" + categoryData[i].region + "</span>";
+    dataElement.appendChild(legendItem);
+    legendItem.style.borderColor = color[i];
     offset += size;
   }
 }
@@ -84,9 +80,36 @@ function shuffle(a) {
     return a;
 }
 
+
 function createPieCharts() {
-  createPie('.pieID--region' );
-  createPie('.pieID--operations' );
+  // Получите уникальные категории данных
+  const categories = [...new Set(data.map(item => item.category))];
+
+  // Создайте элементы pie-chart для каждой категории
+  categories.forEach(category => {
+    // Фильтруйте данные для текущей категории
+    const categoryData = data.filter(item => item.category === category);
+
+    // Создайте контейнер для категории и задайте соответствующий класс
+    const categoryContainer = document.createElement('div');
+    categoryContainer.classList.add('pieID--category-' + category, 'pie-chart--wrapper');
+
+    // Создайте заголовок для категории
+    const categoryTitle = document.createElement('h2');
+    categoryTitle.textContent = 'Category ' + category;
+
+    // Создайте круговую диаграмму
+    const categoryChart = createPie(categoryContainer, categoryData);
+
+    // Добавьте заголовок и круговую диаграмму в контейнер категории
+    categoryContainer.appendChild(categoryTitle);
+    categoryContainer.appendChild(categoryChart);
+
+    // Добавьте контейнер категории в основной контейнер
+    const pieChartsContainer = document.querySelector('.pie-charts');
+    pieChartsContainer.appendChild(categoryContainer);
+  });
 }
 
+// Вызовите функцию для создания круговых диаграмм
 createPieCharts();
