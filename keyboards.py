@@ -27,4 +27,5 @@ def create_categories_keyboard(categories):
         categories_keyboard.add(category_button)
 
     categories_keyboard.add(cancel_button)
+
     return categories_keyboard
