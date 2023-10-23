@@ -30,9 +30,8 @@ def create_categories_keyboard(categories):
 
     return categories_keyboard
 
-markup4 = ReplyKeyboardMarkup(resize_keyboard=True)
-button1 = KeyboardButton('Да')
-button2 = KeyboardButton('Нет')
-markup4.row(
-    button1, button2
-)
+
+yes_or_no_keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
+yes_button = KeyboardButton('Да')
+no_button = KeyboardButton('Нет')
+yes_or_no_keyboard.row(yes_button, no_button)

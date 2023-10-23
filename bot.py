@@ -52,7 +52,6 @@ async def add_cash(message: types.Message):
 @dp.message_handler(state=FSM_Assets.stock_name)
 async def get_stock_name(message: types.Message, state: FSMContext):
     answer = message.text
-
     if answer != cancel_button.text:
         async with state.proxy() as data:
             data['stock_name'] = answer
@@ -67,7 +66,6 @@ async def get_stock_name(message: types.Message, state: FSMContext):
 @dp.message_handler(state=FSM_Assets.quantity)
 async def get_quantity(message: types.Message, state: FSMContext):
     answer = message.text
-
     if answer != cancel_button.text:
         try:
             async with state.proxy() as data:
@@ -98,7 +96,6 @@ async def get_spent_amount(message: types.Message, state: FSMContext):
             await message.answer(text="Необходимо число")
             await send_welcome(message)
             await state.reset_state(with_data=False)
-
     else:
         await state.reset_state(with_data=False)
         await send_welcome(message)
@@ -110,9 +107,10 @@ async def get_category(message: types.Message, state: FSMContext):
     if answer != cancel_button.text:
         async with state.proxy() as data:
             data['category'] = answer
-            category_check =  await sql_manager.get_categories(message.from_user.id)
-            if answer not in category_check:
-                await message.answer("Будете добавлять категорию в клавиатуру ?",reply_markup=markup4)
+
+            categories = await sql_manager.get_categories(message.from_user.id)
+            if answer not in categories:
+                await message.answer("Будете добавлять категорию в клавиатуру?", reply_markup=yes_or_no_keyboard)
                 await FSM_Spending.next()
             else:
                 await message.answer("Что вы купили:", reply_markup=cancel_keyboard)
@@ -122,19 +120,16 @@ async def get_category(message: types.Message, state: FSMContext):
         await state.reset_state(with_data=False)
 
 
-@dp.message_handler(state=FSM_Spending.answer)
-async def get_answer(message: types.Message, state: FSMContext):
+@dp.message_handler(state=FSM_Spending.consent_to_adding_button)
+async def get_consent_to_adding_button(message: types.Message, state: FSMContext):
     answer = message.text
     if answer != cancel_button.text:
         async with state.proxy() as data:
             if answer == "Да":
                 await sql_manager.insert_into_categories(message.from_user.id, data['category'])
-                await FSM_Spending.next()
-                await message.answer("Что вы купили:", reply_markup=cancel_keyboard)
 
-            if message.text == "Нет":
-                await FSM_Spending.last()
-                await message.answer("Что вы купили:", reply_markup=cancel_keyboard)
+            await FSM_Spending.next()
+            await message.answer("Что вы купили:", reply_markup=cancel_keyboard)
     else:
         await send_welcome(message)
         await state.reset_state(with_data=False)
