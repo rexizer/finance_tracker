@@ -26,6 +26,7 @@ const data = [
   { id: 25, category: 6, region: 'Southeast Asia', count: 30, month: 'январь' }
 ];
 
+
 const months = data.map(item => item.month);
 
 function calculateTotalCountForMonth(data, month) {
@@ -110,6 +111,7 @@ function createPieChart(title) {
 
   const legend = document.createElement('ul');
   legend.classList.add('pie-chart__legend');
+  legend.innerHTML = "";
 
   pieChart.appendChild(pie);
   pieChart.appendChild(legend);

@@ -3,6 +3,12 @@ function sliceSize(dataNum, dataTotal) {
 }
 
 function addSlice(id, sliceSize, pieElement, offset, sliceID, color) {
+  console.log('addSlice called with:', id, sliceSize, pieElement, offset, sliceID, color);
+
+  // sliceID = "s" + dataCount + "-" + sliceCount; // Произвольное значение
+
+  // Очищаем sliceID от недопустимых символов
+  sliceID = sliceID.replace(/[^\w-]/g, '_');
   $(pieElement).append("<div class='slice "+ sliceID + "'><span></span></div>");
   var offset = offset - 1;
   var sizeRotation = -179 + sliceSize;
@@ -18,6 +24,7 @@ function addSlice(id, sliceSize, pieElement, offset, sliceID, color) {
 }
 
 function iterateSlices(id, sliceSize, pieElement, offset, dataCount, sliceCount, color) {
+  console.log('iterateSlices called with:', id, sliceSize, pieElement, offset, dataCount, sliceCount, color);
   var
     maxSize = 179,
     sliceID = "s" + dataCount + "-" + sliceCount;
@@ -36,8 +43,9 @@ function createPie(pieChartElement, categoryData) {
   let offset = 0;
   let i = 0;
   const pieElement = pieChartElement.querySelector('.pie-chart__pie');
-  const dataElement = pieChartElement.querySelector('.pie-chart__legend');
-  const color = [
+  let dataElement = pieChartElement.querySelector('.pie-chart__legend');
+  
+  let color = [
     "rgb(187,228,255)",
     "rgb(2,166,209)",
     "rgb(5,116,206)",
@@ -53,8 +61,8 @@ function createPie(pieChartElement, categoryData) {
   ];
 
   color = shuffle(color);
-
-  dataElement.innerHTML = ''; // Очищаем элемент .pie-chart__legend
+  // console.log(pieChartElement, dataElement);
+  // dataElement.innerHTML = ''; // Очищаем элемент .pie-chart__legend
 
   for (i = 0; i < listData.length; i++) {
     const size = sliceSize(listData[i], listTotal);
@@ -107,9 +115,10 @@ function createPieCharts() {
 
     // Добавьте контейнер категории в основной контейнер
     const pieChartsContainer = document.querySelector('.pie-charts');
+    console.log(pieChartsContainer, "check");
     pieChartsContainer.appendChild(categoryContainer);
   });
 }
 
-// Вызовите функцию для создания круговых диаграмм
+
 createPieCharts();
