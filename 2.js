@@ -1,16 +1,12 @@
 $(document).ready(function() {
-  createPieCharts();
+  createPieCharts(data);
 });
 
-function createPieCharts() {
-  var data = [
-      { category: 'Micro-Skills', values: [{ label: 'Additive', count: 642 }, { label: 'Multiplicative', count: 358 }] },
-      { category: 'Categories', values: [{ label: 'Horizontal', count: 768 }, { label: 'Vertical', count: 232 }] },
-      { category: 'Operations', values: [{ label: 'Addition', count: 486 }, { label: 'Subtraction', count: 156 }, { label: 'Multiplication', count: 215 }, { label: 'Division', count: 143 }] }
-  ];
-
-  data.forEach(function(item, index) {
-      var category = item.category;
+function createPieCharts(data) {
+  var groupedData = groupDataByCategory(data);
+  
+  groupedData.forEach(function(categoryData, index) {
+      var category = categoryData.category;
       var pieElementId = 'pie-' + index;
       var legendElementId = 'legend-' + index;
 
@@ -24,7 +20,24 @@ function createPieCharts() {
           '</div>'
       );
 
-      createPie('#' + pieElementId, '#' + legendElementId, item.values);
+      createPie('#' + pieElementId, '#' + legendElementId, categoryData.values);
+  });
+}
+
+function groupDataByCategory(data) {
+  var groupedData = {};
+  data.forEach(function(item) {
+      if (!groupedData[item.category]) {
+          groupedData[item.category] = [];
+      }
+      groupedData[item.category].push({ label: item.label, count: item.count });
+  });
+
+  return Object.keys(groupedData).map(function(category) {
+      return {
+          category: category,
+          values: groupedData[category]
+      };
   });
 }
 
