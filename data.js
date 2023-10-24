@@ -1,56 +1,3 @@
-// const data = [
-//   { id: 1, category: 'Активы', region: 'North America', count: 367, month: 'январь' },
-//   { id: 2, category: 'Активы', region: 'Western Europe', count: 66, month: 'февраль' },
-//   { id: 3, category: 'Активы', region: 'Asia', count: 53, month: 'март' },
-//   { id: 4, category: 'Расходы', region: 'Latin America & Caribbean', count: 19, month: 'апрель' },
-//   { id: 5, category: 'Расходы', region: 'Australia & New Zealand', count: 16, month: 'май' },
-//   { id: 6, category: 'Расходы', region: 'Russian Commonwealth', count: 13, month: 'июнь' },
-//   { id: 7, category: 'Активы', region: 'Eastern Europe', count: 13, month: 'июль' },
-//   { id: 8, category: 'Активы', region: 'Middle East', count: 9, month: 'август' },
-//   { id: 9, category: 'Расходы', region: 'North America', count: 367, month: 'сентябрь' },
-//   { id: 10, category: 'Расходы', region: 'Western Europe', count: 66, month: 'октябрь' },
-//   { id: 11, category: 'Активы', region: 'Asia', count: 53, month: 'ноябрь' },
-//   { id: 12, category: 'Активы', region: 'Latin America & Caribbean', count: 19, month: 'декабрь' },
-//   { id: 13, category: 'Активы', region: 'North America', count: 367, month: 'январь' },
-//   { id: 14, category: 'Активы', region: 'Western Europe', count: 66, month: 'февраль' },
-//   { id: 15, category: 'Активы', region: 'Asia', count: 53, month: 'март' },
-//   { id: 16, category: 'Расходы', region: 'Latin America & Caribbean', count: 19, month: 'апрель' },
-//   { id: 17, category: 'Расходы', region: 'Australia & New Zealand', count: 16, month: 'май' },
-//   { id: 18, category: 'Расходы', region: 'Russian Commonwealth', count: 13, month: 'июнь' },
-//   { id: 19, category: 'Активы', region: 'Eastern Europe', count: 13, month: 'июль' },
-//   { id: 20, category: 'Активы', region: 'Middle East', count: 9, month: 'август' },
-//   { id: 21, category: 'Расходы', region: 'North America', count: 367, month: 'сентябрь' },
-//   { id: 22, category: 'Расходы', region: 'Western Europe', count: 66, month: 'октябрь' },
-//   { id: 23, category: 'Активы', region: 'Asia', count: 53, month: 'ноябрь' },
-//   { id: 24, category: 'Активы', region: 'Latin America & Caribbean', count: 19, month: 'декабрь' },
-//   { id: 25, category: 'Активы', region: 'North America', count: 367, month: 'январь' },
-//   { id: 26, category: 'Активы', region: 'Western Europe', count: 66, month: 'февраль' },
-//   { id: 27, category: 'Активы', region: 'Asia', count: 53, month: 'март' },
-//   { id: 28, category: 'Расходы', region: 'Latin America & Caribbean', count: 19, month: 'апрель' },
-//   { id: 29, category: 'Расходы', region: 'Australia & New Zealand', count: 16, month: 'май' },
-//   { id: 30, category: 'Расходы', region: 'Russian Commonwealth', count: 13, month: 'июнь' },
-//   { id: 31, category: 'Активы', region: 'Eastern Europe', count: 13, month: 'июль' },
-//   { id: 32, category: 'Активы', region: 'Middle East', count: 9, month: 'август' },
-//   { id: 33, category: 'Расходы', region: 'North America', count: 367, month: 'сентябрь' },
-//   { id: 34, category: 'Расходы', region: 'Western Europe', count: 66, month: 'октябрь' },
-//   { id: 35, category: 'Активы', region: 'Asia', count: 53, month: 'ноябрь' },
-//   { id: 36, category: 'Активы', region: 'Latin America & Caribbean', count: 19, month: 'декабрь' },
-//   { id: 37, category: 'Активы', region: 'North America', count: 367, month: 'январь' },
-//   { id: 38, category: 'Активы', region: 'Western Europe', count: 66, month: 'февраль' },
-//   { id: 39, category: 'Активы', region: 'Asia', count: 53, month: 'март' },
-//   { id: 40, category: 'Расходы', region: 'Latin America & Caribbean', count: 19, month: 'апрель' },
-//   { id: 41, category: 'Расходы', region: 'Australia & New Zealand', count: 16, month: 'май' },
-//   { id: 42, category: 'Расходы', region: 'Russian Commonwealth', count: 13, month: 'июнь' },
-//   { id: 43, category: 'Активы', region: 'Eastern Europe', count: 13, month: 'июль' },
-//   { id: 44, category: 'Активы', region: 'Middle East', count: 9, month: 'август' },
-//   { id: 45, category: 'Расходы', region: 'North America', count: 367, month: 'сентябрь' },
-//   { id: 46, category: 'Расходы', region: 'Western Europe', count: 66, month: 'октябрь' },
-//   { id: 47, category: 'Активы', region: 'Asia', count: 53, month: 'ноябрь' },
-//   { id: 48, category: 'Активы', region: 'Latin America & Caribbean', count: 19, month: 'декабрь' },
-//   { id: 49, category: 'Активы', region: 'North America', count: 367, month: 'январь' },
-//   { id: 50, category: 'Активы', region: 'Western Europe', count: 66, month: 'февраль' }
-// ];
-
 const data = [
   { category: 'Активы', label: 'North America', count: 367, month: 'январь' },
   { category: 'Активы', label: 'Western Europe', count: 66, month: 'январь' },
@@ -104,8 +51,8 @@ const data = [
 ]
 
 
-
 const months = data.map(item => item.month);
+const createdBlocks = {}; // Объект для отслеживания уже созданных блоков
 
 function calculateTotalCountForMonth(data, month) {
   return data
@@ -114,26 +61,30 @@ function calculateTotalCountForMonth(data, month) {
 }
 
 months.forEach(month => {
-  const block = document.createElement('div');
-  block.classList.add('block');
+  if (!createdBlocks[month]) { // Проверяем, был ли уже создан блок для данного месяца
+    const block = document.createElement('div');
+    block.classList.add('block');
 
-  const chartContainer = document.createElement('div');
-  chartContainer.classList.add('chart-container');
+    const chartContainer = document.createElement('div');
+    chartContainer.classList.add('chart-container');
 
-  const blockTitle = document.createElement('div');
-  blockTitle.classList.add('block__title');
-  blockTitle.textContent = calculateTotalCountForMonth(data, month) + ' Р';
+    const blockTitle = document.createElement('div');
+    blockTitle.classList.add('block__title');
+    blockTitle.textContent = calculateTotalCountForMonth(data, month) + ' Р';
 
-  const blockText = document.createElement('div');
-  blockText.classList.add('block__text');
-  blockText.textContent = `Расходы за ${month}`;
+    const blockText = document.createElement('div');
+    blockText.classList.add('block__text');
+    blockText.textContent = `Расходы за ${month}`;
 
-  block.appendChild(chartContainer);
-  block.appendChild(blockTitle);
-  block.appendChild(blockText);
+    block.appendChild(chartContainer);
+    block.appendChild(blockTitle);
+    block.appendChild(blockText);
 
-  const blocksContainer = document.querySelector('.blocks');
-  blocksContainer.appendChild(block);
+    const blocksContainer = document.querySelector('.blocks');
+    blocksContainer.appendChild(block);
+
+    createdBlocks[month] = true; // Устанавливаем флаг, что блок для данного месяца создан
+  }
 });
 
 
@@ -164,8 +115,8 @@ months.forEach(month => {
   pieChartsContainer.appendChild(regionsChart);
 
   // Добавляем созданные элементы в .wrapper
-  wrapper.appendChild(title);
-  wrapper.appendChild(pieChartsContainer);
+  // wrapper.appendChild(title);
+  // wrapper.appendChild(pieChartsContainer);
 
   // Добавляем .wrapper в .wrappers
   wrappers.appendChild(wrapper);
@@ -198,3 +149,5 @@ function createPieChart(title) {
 
   return pieChartWrapper;
 }
+
+

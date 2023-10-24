@@ -2,58 +2,54 @@ $(document).ready(function() {
   createPieCharts(data);
 });
 
-$(document).ready(function() {
-  createPieCharts(data);
-});
-
 function createPieCharts(data) {
-  var months = getUniqueMonths(data);
+    var months = getUniqueMonths(data);
 
-  months.forEach(function(month) {
-      var monthData = filterDataByMonth(data, month);
+    months.forEach(function(month) {
+        var monthData = filterDataByMonth(data, month);
 
-      $('.wrapper').append(
-          '<h1>' + month + '</h1>' +
-          '<div class="pie-charts">' +
-          '<div class="pie-chart--wrapper">' +
-          '<h2>Активы</h2>' +
-          '<div class="pie-chart">' +
-          '<div class="pie-chart__pie" id="' + 'active-pie-' + month + '"></div>' +
-          '<ul class="pie-chart__legend" id="' + 'active-legend-' + month + '"></ul>' +
-          '</div>' +
-          '</div>' +
-          '<div class="pie-chart--wrapper">' +
-          '<h2>Расходы</h2>' +
-          '<div class="pie-chart">' +
-          '<div class="pie-chart__pie" id="' + 'expense-pie-' + month + '"></div>' +
-          '<ul class="pie-chart__legend" id="' + 'expense-legend-' + month + '"></ul>' +
-          '</div>' +
-          '</div>' +
-          '</div>'
-      );
+        $('.wrapper').append(
+            '<h1>' + month + '</h1>' +
+            '<div class="pie-charts">' +
+            '<div class="pie-chart--wrapper">' +
+            '<h2>Активы</h2>' +
+            '<div class="pie-chart">' +
+            '<div class="pie-chart__pie" id="' + 'active-pie-' + month + '"></div>' +
+            '<ul class="pie-chart__legend" id="' + 'active-legend-' + month + '"></ul>' +
+            '</div>' +
+            '</div>' +
+            '<div class="pie-chart--wrapper">' +
+            '<h2>Расходы</h2>' +
+            '<div class="pie-chart">' +
+            '<div class="pie-chart__pie" id="' + 'expense-pie-' + month + '"></div>' +
+            '<ul class="pie-chart__legend" id="' + 'expense-legend-' + month + '"></ul>' +
+            '</div>' +
+            '</div>' +
+            '</div>'
+        );
 
-      createPie('#active-pie-' + month, '#active-legend-' + month, filterDataByCategory(monthData, 'Активы'));
-      createPie('#expense-pie-' + month, '#expense-legend-' + month, filterDataByCategory(monthData, 'Расходы'));
-  });
+        createPie('#active-pie-' + month, '#active-legend-' + month, filterDataByCategory(monthData, 'Активы'));
+        createPie('#expense-pie-' + month, '#expense-legend-' + month, filterDataByCategory(monthData, 'Расходы'));
+    });
 }
 
 function getUniqueMonths(data) {
-  var months = data.map(function(item) {
-      return item.month;
-  });
-  return [...new Set(months)];
+    var months = data.map(function(item) {
+        return item.month;
+    });
+    return [...new Set(months)];
 }
 
 function filterDataByMonth(data, month) {
-  return data.filter(function(item) {
-      return item.month === month;
-  });
+    return data.filter(function(item) {
+        return item.month === month;
+    });
 }
 
 function filterDataByCategory(data, category) {
-  return data.filter(function(item) {
-      return item.category === category;
-  });
+    return data.filter(function(item) {
+        return item.category === category;
+    });
 }
 
 function groupDataByCategory(data) {
