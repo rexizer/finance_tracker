@@ -52,15 +52,20 @@
 // ];
 
 const data = [
-  { category: 'Micro-Skills', label: 'Additive', count: 642 },
-  { category: 'Micro-Skills', label: 'Multiplicative', count: 358 },
-  { category: 'Categories', label: 'Horizontal', count: 768 },
-  { category: 'Categories', label: 'Vertical', count: 232 },
-  { category: 'Operations', label: 'Addition', count: 486 },
-  { category: 'Operations', label: 'Subtraction', count: 156 },
-  { category: 'Operations', label: 'Multiplication', count: 215 },
-  { category: 'Operations', label: 'Division', count: 143 }
+  { category: 'Активы', label: 'North America', count: 367, month: 'январь' },
+  { category: 'Активы', label: 'Western Europe', count: 66, month: 'февраль' },
+  { category: 'Активы', label: 'Asia', count: 53, month: 'март' },
+  { category: 'Активы', label: 'Eastern Europe', count: 13, month: 'июль' },
+  { category: 'Активы', label: 'Middle East', count: 9, month: 'август' },
+  { category: 'Активы', label: 'Asia', count: 53, month: 'ноябрь' },
+  { category: 'Активы', label: 'Latin America & Caribbean', count: 19, month: 'декабрь' },
+  { category: 'Расходы', label: 'Latin America & Caribbean', count: 19, month: 'апрель' },
+  { category: 'Расходы', label: 'Australia & New Zealand', count: 16, month: 'май' },
+  { category: 'Расходы', label: 'Russian Commonwealth', count: 13, month: 'июнь' },
+  { category: 'Расходы', label: 'North America', count: 367, month: 'сентябрь' },
+  { category: 'Расходы', label: 'Western Europe', count: 66, month: 'октябрь' },
 ];
+
 
 
 const months = data.map(item => item.month);
