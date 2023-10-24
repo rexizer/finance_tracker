@@ -1,5 +1,15 @@
 $(document).ready(function() {
-  createPieCharts(data);
+  // Добавьте обработчик события клика для элементов блоков
+  $('.block').on('click', function() {
+    // Получите месяц из выбранного блока
+    const selectedMonth = $(this).find('.block__text').text().split(' ')[2];
+    
+    // Фильтруйте данные только для выбранного месяца
+    const selectedMonthData = filterDataByMonth(data, selectedMonth);
+    
+    // Вызовите функцию для создания диаграмм только для выбранного месяца
+    createPieCharts(selectedMonthData);
+  });
 });
 
 function createPieCharts(data) {
