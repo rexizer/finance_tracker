@@ -7,7 +7,7 @@ $(document).ready(function(){
     asNavFor: '.slider-nav'
   });
   $('.slider-nav').slick({
-    slidesToShow: 12,
+    slidesToShow: 9,
     slidesToScroll: 1,
     asNavFor: '.slider-for',
     dots: false,

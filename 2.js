@@ -1,6 +1,9 @@
 $(document).ready(function() {
-  // Добавьте обработчик события клика для элементов блоков
+  // Обработчик события клика для элементов блоков
   $('.block').on('click', function() {
+    // Очистка предыдущих диаграмм, если они существуют
+    clearCharts();
+
     // Получите месяц из выбранного блока
     const selectedMonth = $(this).find('.block__text').text().split(' ')[2];
     
@@ -11,6 +14,11 @@ $(document).ready(function() {
     createPieCharts(selectedMonthData);
   });
 });
+
+function clearCharts() {
+  // Удалите все элементы диаграмм из контейнера
+  $('.wrapper').empty();
+}
 
 function createPieCharts(data) {
     var months = getUniqueMonths(data);
