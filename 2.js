@@ -96,7 +96,7 @@ function createPie(pieElementId, legendElementId, values) {
 
   values.forEach(function(value, index) {
       listData.push(Number(value.count));
-      $(legendElementId).append('<li><em>' + value.label + '</em><span>' + value.count + '</span></li>');
+      $(legendElementId).append('<li class="' + value.continent + '"><em>' + value.label + '</em><span>' + value.count + '</span></li>');
   });
 
   for (var i = 0; i < listData.length; i++) {
@@ -128,7 +128,7 @@ function iterateSlices(pieElementId, sliceSize, offset, dataCount, sliceCount, c
 }
 
 function addSlice(pieElementId, sliceSize, offset, sliceID, color) {
-  $(pieElementId).append('<div class="slice ' + sliceID + '"><span></span></div>');
+  $(pieElementId).append('<div class="slice ' + sliceID + ' "><span></span></div>');
   offset = offset - 1;
   var sizeRotation = -179 + sliceSize;
 

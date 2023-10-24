@@ -11,6 +11,12 @@ header{
   font-size: 25px;
 }
 
+.firstly{
+  margin-top: 100px !important;
+  font-size: 35px;
+  text-transform: none !important;
+}
+
 body{
   padding: 15px 45px 0;
   color: var(--white);
