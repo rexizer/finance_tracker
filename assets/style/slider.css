@@ -1,0 +1,5 @@
+.wrappers{
+  width: 100% !important;
+  display: flex;
+  overflow: hidden;
+}
