@@ -2,11 +2,15 @@
 from flask import Flask, render_template, g, url_for
 import sqlite3
 import json
+from sys import platform
 
 
 app = Flask(__name__)
 
-DATABASE = '../finance.db'
+if platform.lower().startswith('win'):
+    DATABASE = './finance.db'
+else:
+    DATABASE = '../finance.db'
 
 
 def get_db():
