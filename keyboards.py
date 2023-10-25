@@ -10,7 +10,8 @@ def create_main_menu_keyboard(user_id):
 
     main_menu_keyboard = ReplyKeyboardMarkup(row_width=1, resize_keyboard=True, input_field_placeholder="Выберите "
                                                                                                         "действие")
-    main_menu_keyboard.add(assets_button, expenses_button, replenish_button, change_categories, statistics_button)
+    main_menu_keyboard.row(assets_button, expenses_button, replenish_button)
+    main_menu_keyboard.add(change_categories, statistics_button)
 
     return main_menu_keyboard
 
