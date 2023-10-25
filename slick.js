@@ -11,6 +11,7 @@ $(document).ready(function(){
     centerMode: true,
     slidesToShow: 9,
     slidesToScroll: 1,
+    infinite: false,
     asNavFor: '.slider-for',
     dots: false,
     arrows: false,

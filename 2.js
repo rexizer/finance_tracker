@@ -57,6 +57,8 @@ function createPieCharts(data) {
     });
 }
 
+
+
 function getUniqueContinents(data) {
     var continents = data.map(function(item) {
       return item.continent;
@@ -129,6 +131,8 @@ function createPie(pieElementId, legendElementId, values) {
       offset += size;
   }
 }
+
+
 
 function sliceSize(dataNum, dataTotal) {
   return (dataNum / dataTotal) * 360;
