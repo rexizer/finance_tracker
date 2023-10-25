@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-  <link rel="stylesheet" href="css.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/css.css') }}">
   <!-- <link rel="stylesheet" href="slider.css"> -->
 </head>
 <body>
@@ -17,23 +17,23 @@
     <div class="wrappers slider-for">
       <div class="wrapper">
         <h1 class="firstly">Нажмите на нужный месяц...</h1>
-
       </div>
     </div>
   </main>
   
-  <footer></footer>
+  <footer style="display: none">{{ user_info.about }}</footer>
 
 
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
   <!-- Include your other scripts here -->
-  <script type="text/javascript" src="data.js"></script>
-  <script type="text/javascript" src="1.js"></script>
-  <script type="text/javascript" src="2.js"></script>
-  <script type="text/javascript" src="slick.js"></script>
-
+  <script type="text/javascript" src="{{ url_for('static', filename='script/data.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='script/1.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='script/2.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='script/slick.js') }}"></script>
+</body>
+</html>
 
 
   

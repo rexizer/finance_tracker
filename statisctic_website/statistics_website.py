@@ -6,7 +6,7 @@ import json
 
 app = Flask(__name__)
 
-DATABASE = '../finance.db'
+DATABASE = './finance.db'
 
 
 def get_db():
@@ -48,9 +48,11 @@ def profile(user_id):
             'about': get_spending(sql, user_table),
             'profile_picture': 'https://example.com/profile-picture.jpg'
         }
+        
+        print(get_spending(sql, user_table))
 
         sql.close()
-        return render_template('profile.html', user_info=user_info)
+        return render_template('index.html', user_info=user_info)
     else:
         return page_not_found(404)
 

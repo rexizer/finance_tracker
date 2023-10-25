@@ -81,7 +81,7 @@ body{
 
 .chart-container{
   padding: 25px;
-  zoom: .15;
+  transform: scale(.15);
 }
 
 .shadow {
