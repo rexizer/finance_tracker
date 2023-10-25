@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
   // Обработчик события клика для элементов блоков
   $('.block').on('click', function() {
     // Очистка предыдущих диаграмм, если они существуют
@@ -13,7 +14,7 @@ $(document).ready(function() {
     // Вызовите функцию для создания диаграмм только для выбранного месяца
     createPieCharts(selectedMonthData);
   });
-});
+});  
 
 function clearCharts() {
   // Удалите все элементы диаграмм из контейнера
@@ -29,20 +30,20 @@ function createPieCharts(data) {
         $('.wrapper').append(
             '<h1>' + month + '</h1>' +
             '<div class="pie-charts">' +
-            '<div class="pie-chart--wrapper">' +
-            '<h2>Активы</h2>' +
-            '<div class="pie-chart">' +
-            '<div class="pie-chart__pie" id="' + 'active-pie-' + month + '"></div>' +
-            '<ul class="pie-chart__legend" id="' + 'active-legend-' + month + '"></ul>' +
-            '</div>' +
-            '</div>' +
-            '<div class="pie-chart--wrapper">' +
-            '<h2>Расходы</h2>' +
-            '<div class="pie-chart">' +
-            '<div class="pie-chart__pie" id="' + 'expense-pie-' + month + '"></div>' +
-            '<ul class="pie-chart__legend" id="' + 'expense-legend-' + month + '"></ul>' +
-            '</div>' +
-            '</div>' +
+                '<div class="pie-chart--wrapper">' +
+                    '<h2>Активы</h2>' +
+                    '<div class="pie-chart">' +
+                        '<div class="pie-chart__pie" id="' + 'active-pie-' + month + '"></div>' +
+                        '<ul class="pie-chart__legend" id="' + 'active-legend-' + month + '"></ul>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="pie-chart--wrapper">' +
+                    '<h2>Расходы</h2>' +
+                    '<div class="pie-chart">' +
+                        '<div class="pie-chart__pie" id="' + 'expense-pie-' + month + '"></div>' +
+                        '<ul class="pie-chart__legend" id="' + 'expense-legend-' + month + '"></ul>' +
+                    '</div>' +
+                '</div>' +
             '</div>'
         );
 
@@ -140,6 +141,17 @@ function addSlice(pieElementId, sliceSize, offset, sliceID, color) {
       'transform': 'rotate(' + sizeRotation + 'deg) translate3d(0,0,0)',
       'background-color': color
   });
+
+//   $(pieElementId + ' .' + sliceID).hover(function() {
+//     $(this).css({
+//       'transform': 'rotate(' + offset + 'deg) translate3d(0,0,0) scale(1, 1.05)',
+//       'cursor': 'poiner'
+//     });
+//   }, function() {
+//     $(this).css({
+//       'transform': 'rotate(' + offset + 'deg) translate3d(0,0,0)'
+//     });
+//   });
 }
 
 function shuffle(a) {

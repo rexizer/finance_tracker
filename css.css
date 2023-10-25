@@ -40,6 +40,24 @@ body{
   padding: 5px 5px;
   letter-spacing: .1rem;
   margin-right: 20px;
+  transition: .2s linear;
+}
+
+.slick-center{
+  transform: scale(1.1);
+  border: 2px solid #fff;
+}
+
+.slick-center:hover{
+  border: 2px solid var(--blue2) !important;
+}
+
+.slick-center{
+  overflow-y: auto !important;
+}
+
+.draggable{
+  padding: 10px 50px !important;
 }
 
 .block img{
@@ -47,6 +65,7 @@ body{
 }
 
 .block:hover{
+  cursor: pointer;
   border: 2px solid var(--blue2);
 }
 
@@ -86,6 +105,10 @@ body{
     }
 }
 
+.pie-chart__legend{
+  width: 400px !important;  
+}
+
 .pie-chart {
     font-family: "Open Sans", Arial;
 }
@@ -108,29 +131,29 @@ body{
     margin: 10px auto 35px;
 }
 
-    .pie-chart__pie::before {
-        content: "";
-        display: block;
-        position: absolute;
-        z-index: 1;
-        width: 100px;
-        height: 100px;
-        background: var(--back);
-        border-radius: 50%;
-        top: 50px;
-        left: 50px;
-    }
+.pie-chart__pie::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 1;
+    width: 100px;
+    height: 100px;
+    background: var(--back);
+    border-radius: 50%;
+    top: 50px;
+    left: 50px;
+}
 
-    .pie-chart__pie::after {
-        content: "";
-        display: block;
-        width: 120px;
-        height: 2px;
-        background: rgba(0,0,0,0.1);
-        border-radius: 50%;
-        box-shadow: 0 0 3px 4px rgba(0,0,0,0.1);
-        margin: 220px auto;
-    }
+.pie-chart__pie::after {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 2px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 50%;
+    box-shadow: 0 0 3px 4px rgba(0,0,0,0.1);
+    margin: 220px auto;
+}
 
 .slice {
     position: absolute;
@@ -138,19 +161,20 @@ body{
     height: 200px;
     clip: rect(0px, 200px, 200px, 100px);
     animation: bake-pie 1s;
+    transition: .1s linear transform;
 }
 
-    .slice span {
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-color: black;
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        clip: rect(0px, 200px, 200px, 100px);
-    }
+.slice span {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    clip: rect(0px, 200px, 200px, 100px);
+}
 
 .pie-chart__legend {
     display: block;
