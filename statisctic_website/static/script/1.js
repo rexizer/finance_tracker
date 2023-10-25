@@ -16,7 +16,7 @@ var pie = d3.layout.pie()
   .value(function(d){ return d.count; })
   .sort(null);
 
-var w = 300, h = 300;
+var w = 50, h = 50;
 
 var outerRadiusArc = w / 2;
 var innerRadiusArc = 115;

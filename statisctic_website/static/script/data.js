@@ -1,4 +1,4 @@
-// const data = [
+// const data2 = [
 //   { category: 'Активы', label: 'North America', count: 367, month: 'январь', continent: 'North America' },
 //   { category: 'Активы', label: 'Western Europe', count: 66, month: 'январь', continent: 'Western Europe' },
 //   { category: 'Активы', label: 'Asia', count: 53, month: 'январь', continent: 'Asia' },
@@ -120,22 +120,46 @@
 //   { category: 'Активы', label: 'Western Europe', count: 66, month: 'январь', continent: 'Western Europe' },
 // ];
 
-// const quotedData = data.map(item => ({
-//   'category': item.category,
-//   'label': item.label,
-//   'count': item.count,
-//   'month': item.month,
-//   'continent': item.continent
-// }));
+// const data2 = [
+//     { category: 'Активы', label: 'North America', count: 367, month: 'январь', continent: 'North America' },
+//     { category: 'Активы', label: 'Western Europe', count: 66, month: 'январь', continent: 'Western Europe' },
+//     { category: 'Активы', label: 'Asia', count: 53, month: 'январь', continent: 'Asia' },
+//     { category: 'Расходы', label: 'Latin America & Caribbean', count: 19, month: 'январь', continent: 'Latin America' },
+//     { category: 'Расходы', label: 'Australia & New Zealand', count: 16, month: 'январь', continent: 'Australia' },
+//     { category: 'Активы', label: 'Eastern Europe', count: 13, month: 'февраль', continent: 'Eastern Europe' },
+//     { category: 'Активы', label: 'Middle East', count: 9, month: 'февраль', continent: 'Middle East' },
+//     { category: 'Расходы', label: 'Russian Commonwealth', count: 13, month: 'февраль', continent: 'Russian Commonwealth' },
+//     { category: 'Расходы', label: 'North America', count: 367, month: 'февраль', continent: 'North America' },
+//     { category: 'Активы', label: 'Western Europe', count: 66, month: 'март', continent: 'Western Europe' },
+//     { category: 'Расходы', label: 'Latin America & Caribbean', count: 19, month: 'март', continent: 'Latin America' },
+//     { category: 'Активы', label: 'Asia', count: 53, month: 'март', continent: 'Asia' },
+//     { category: 'Активы', label: 'Eastern Europe', count: 13, month: 'март', continent: 'Eastern Europe' },
+//     { category: 'Расходы', label: 'Australia & New Zealand', count: 16, month: 'апрель', continent: 'Australia' },
+//     { category: 'Активы', label: 'Middle East', count: 9, month: 'апрель', continent: 'Middle East' },
+//     { category: 'Расходы', label: 'Russian Commonwealth', count: 13, month: 'апрель', continent: 'Russian Commonwealth' },
+//     { category: 'Активы', label: 'Western Europe', count: 66, month: 'апрель', continent: 'Western Europe' },
+//     { category: 'Расходы', label: 'North America', count: 367, month: 'май', continent: 'North America' },
+//     { category: 'Активы', label: 'Asia', count: 53, month: 'май', continent: 'Asia' }
+// ]
 
-let data2 = JSON.parse(document.querySelector("footer").innerHTML)
-console.log(data2)
+let data_assets = JSON.parse(document.querySelector(".assets").innerHTML)
+let data_spending = JSON.parse(document.querySelector(".spending").innerHTML)
 
 const monthss = [
   'январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'
 ];
 
-let data = data2.map(item => {
+let data1 = data_assets.map(item => {
+  return {
+    month: "октябрь",
+    count: item.quantity,
+    continent: "категория",
+    label: item.stock_name,
+    category: "Активы"
+  };
+});
+
+let data = data_spending.map(item => {
   const date = new Date(item.date);
   const monthName = monthss[date.getMonth()]; // Получаем название месяца
   return {
@@ -145,9 +169,9 @@ let data = data2.map(item => {
     label: item.commentary,
     category: "Расходы"
   };
-});
+}).concat(data1);
+// data = data.concat(data2);
 
-console.log(data);
 
 // console.log(modifiedData);
 
@@ -215,8 +239,8 @@ months.forEach(month => {
   pieChartsContainer.classList.add('pie-charts');
 
   // Создаем круговую диаграмму для интересов
-  const interestsChart = createPieChart('Interests');
-  pieChartsContainer.appendChild(interestsChart);
+  // const interestsChart = createPieChart('Interests');
+  // pieChartsContainer.appendChild(interestsChart);
 
   // Создаем круговую диаграмму для регионов
   const regionsChart = createPieChart('Region');

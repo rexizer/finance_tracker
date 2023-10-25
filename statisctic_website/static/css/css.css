@@ -40,24 +40,6 @@ body{
   padding: 5px 5px;
   letter-spacing: .1rem;
   margin-right: 20px;
-  transition: .2s linear;
-}
-
-.slick-center{
-  transform: scale(1.1);
-  border: 2px solid #fff;
-}
-
-.slick-center:hover{
-  border: 2px solid var(--blue2) !important;
-}
-
-.slick-center{
-  overflow-y: auto !important;
-}
-
-.draggable{
-  padding: 10px 50px !important;
 }
 
 .block img{
@@ -65,7 +47,6 @@ body{
 }
 
 .block:hover{
-  cursor: pointer;
   border: 2px solid var(--blue2);
 }
 
@@ -81,7 +62,6 @@ body{
 
 .chart-container{
   padding: 25px;
-  transform: scale(.15);
 }
 
 .shadow {
@@ -103,10 +83,6 @@ body{
     from {
         transform: rotate(0deg) translate3d(0,0,0);
     }
-}
-
-.pie-chart__legend{
-  width: 400px !important;  
 }
 
 .pie-chart {
@@ -131,29 +107,29 @@ body{
     margin: 10px auto 35px;
 }
 
-.pie-chart__pie::before {
-    content: "";
-    display: block;
-    position: absolute;
-    z-index: 1;
-    width: 100px;
-    height: 100px;
-    background: var(--back);
-    border-radius: 50%;
-    top: 50px;
-    left: 50px;
-}
+    .pie-chart__pie::before {
+        content: "";
+        display: block;
+        position: absolute;
+        z-index: 1;
+        width: 100px;
+        height: 100px;
+        background: var(--back);
+        border-radius: 50%;
+        top: 50px;
+        left: 50px;
+    }
 
-.pie-chart__pie::after {
-    content: "";
-    display: block;
-    width: 120px;
-    height: 2px;
-    background: rgba(0,0,0,0.1);
-    border-radius: 50%;
-    box-shadow: 0 0 3px 4px rgba(0,0,0,0.1);
-    margin: 220px auto;
-}
+    .pie-chart__pie::after {
+        content: "";
+        display: block;
+        width: 120px;
+        height: 2px;
+        background: rgba(0,0,0,0.1);
+        border-radius: 50%;
+        box-shadow: 0 0 3px 4px rgba(0,0,0,0.1);
+        margin: 220px auto;
+    }
 
 .slice {
     position: absolute;
@@ -161,20 +137,19 @@ body{
     height: 200px;
     clip: rect(0px, 200px, 200px, 100px);
     animation: bake-pie 1s;
-    transition: .1s linear transform;
 }
 
-.slice span {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: black;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    clip: rect(0px, 200px, 200px, 100px);
-}
+    .slice span {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: black;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        clip: rect(0px, 200px, 200px, 100px);
+    }
 
 .pie-chart__legend {
     display: block;
@@ -217,58 +192,67 @@ body{
 
 
 .homes-list {
-  margin: 0 auto;
+  margin         : 0 auto;
   list-style-type: none;
-  width: 400px;
-  text-align: center;
+  width          : 400px;
+  text-align     : center;
 }
 
 .homes-list li {
-  padding: 15px;
+  padding    : 15px;
   font-family: helvetica;
-  color: #fff;
+  color      : #fff;
   font-weight: lighter;
-  font-size: 15px;
+  font-size  : 15px;
   line-height: 15x;
-  margin: 2px;
-  padding: 20px 10px;
-  float: left;
-  cursor: pointer;
-  opacity: 0.85;
-  transition: opacity 0.1s ease, padding 0.1s ease;
+  -moz-line-height: 15px;
+  margin     : 2px;
+  padding    : 20px 10px;
+  float      : left;
+  cursor     : pointer;
+  opacity    : 0.85;
+  transition : opacity 0.1s ease, padding 0.1s ease;
 }
 
 .homes-list li:after {
-  overflow: hidden;
-  content: "20 homes";
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 14px;
-  font-weight: bold;
-  margin-left: 0;
-  width: 0;
-  opacity: 0;
-  white-space: nowrap;
-  transition: width 0.2s ease, opacity 0.1s ease;
+  overflow        : hidden;
+  content         : "20 homes";
+  display         : inline-block;
+  vertical-align  : middle;
+  font-size       : 14px;
+  font-weight     : bold;
+  margin-left     : 0;
+  width           : 0;
+  opacity         : 0;
+  white-space     : nowrap;
+  transition      : width 0.2s ease, opacity 0.1s ease;
   /* pill */
-  box-sizing: border-box;
-  background-color: rgba(0,0,0,0.1);
-  padding: 5px 0 2px;
-  border-radius: 4px;  
-  line-height: 1;
-  border: 1px solid rgba(0,0,0,0.04)
-  /**/
+  box-sizing      : border-box;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding         : 5px 0 2px;
+  border-radius   : 4px;
+  line-height     : 1;
+  border          : 1px solid rgba(0, 0, 0, 0.04)
+    /**/
 }
 
 .homes-list li:hover {
   position: relative;
-  z-index: 2;
-  opacity: 1;
-  padding: 20px;
+  z-index : 2;
+  opacity : 1;
+  padding : 20px;
 }
 
 .homes-list li:hover:after {
   margin-left: 15px;
-  width: 82px;
-  opacity: 1;
+  width      : 82px;
+  opacity    : 1;
 }
+
+
+
+
+
+
+
+

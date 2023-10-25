@@ -35,7 +35,7 @@ function createPieCharts(data) {
                 '<div class="pie-chart--wrapper">' +
                     '<h2>Активы</h2>' +
                     '<div class="pie-chart">' +
-                        '<div class="pie-chart__pie" id="' + 'active-pie-' + month + '"></div>' +
+                        // '<div class="pie-chart__pie" id="' + 'active-pie-' + month + '"></div>' +
                         '<ul class="pie-chart__legend" id="' + 'active-legend-' + month + '"></ul>' +
                     '</div>' +
                     '<ul class="homes-list" id="' + 'homes-list-' + month + '"></ul>' +
@@ -117,7 +117,7 @@ function createPie(pieElementId, legendElementId, values) {
 
   values.forEach(function(value, index) {
       listData.push(Number(value.count));
-      $(legendElementId).append('<li class="' + value.continent + '"><em>' + value.label + '</em> <!--<em >' + value.continent + '</em>--><span>' + value.count + '</span></li>');
+      $(legendElementId).append('<li><em>' + value.label + '</em><span>' + value.count + '</span></li>');
   });
 
   for (var i = 0; i < listData.length; i++) {
