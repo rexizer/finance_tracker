@@ -214,3 +214,61 @@ body{
         flex-direction: column;
     }
 }
+
+
+.homes-list {
+  margin: 0 auto;
+  list-style-type: none;
+  width: 400px;
+  text-align: center;
+}
+
+.homes-list li {
+  padding: 15px;
+  font-family: helvetica;
+  color: #fff;
+  font-weight: lighter;
+  font-size: 15px;
+  line-height: 15x;
+  margin: 2px;
+  padding: 20px 10px;
+  float: left;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.1s ease, padding 0.1s ease;
+}
+
+.homes-list li:after {
+  overflow: hidden;
+  content: "20 homes";
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 0;
+  width: 0;
+  opacity: 0;
+  white-space: nowrap;
+  transition: width 0.2s ease, opacity 0.1s ease;
+  /* pill */
+  box-sizing: border-box;
+  background-color: rgba(0,0,0,0.1);
+  padding: 5px 0 2px;
+  border-radius: 4px;  
+  line-height: 1;
+  border: 1px solid rgba(0,0,0,0.04)
+  /**/
+}
+
+.homes-list li:hover {
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+  padding: 20px;
+}
+
+.homes-list li:hover:after {
+  margin-left: 15px;
+  width: 82px;
+  opacity: 1;
+}

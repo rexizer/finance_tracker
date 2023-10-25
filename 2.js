@@ -27,6 +27,8 @@ function createPieCharts(data) {
     months.forEach(function(month) {
         var monthData = filterDataByMonth(data, month);
 
+        var uniqueContinents = getUniqueContinents(monthData);
+
         $('.wrapper').append(
             '<h1>' + month + '</h1>' +
             '<div class="pie-charts">' +
@@ -36,6 +38,7 @@ function createPieCharts(data) {
                         '<div class="pie-chart__pie" id="' + 'active-pie-' + month + '"></div>' +
                         '<ul class="pie-chart__legend" id="' + 'active-legend-' + month + '"></ul>' +
                     '</div>' +
+                    '<ul class="homes-list" id="' + 'homes-list-' + month + '"></ul>' +
                 '</div>' +
                 '<div class="pie-chart--wrapper">' +
                     '<h2>Расходы</h2>' +
@@ -43,12 +46,27 @@ function createPieCharts(data) {
                         '<div class="pie-chart__pie" id="' + 'expense-pie-' + month + '"></div>' +
                         '<ul class="pie-chart__legend" id="' + 'expense-legend-' + month + '"></ul>' +
                     '</div>' +
+                    '<ul class="homes-list" id="' + 'homes-list-' + month + '"></ul>' +
                 '</div>' +
             '</div>'
         );
 
         createPie('#active-pie-' + month, '#active-legend-' + month, filterDataByCategory(monthData, 'Активы'));
         createPie('#expense-pie-' + month, '#expense-legend-' + month, filterDataByCategory(monthData, 'Расходы'));
+        populateHomesList('#homes-list-' + month, uniqueContinents);
+    });
+}
+
+function getUniqueContinents(data) {
+    var continents = data.map(function(item) {
+      return item.continent;
+    });
+    return [...new Set(continents)];
+}
+
+function populateHomesList(listElementId, continents) {
+    continents.forEach(function(continent) {
+        $(listElementId).append('<li>' + continent + '</li>');
     });
 }
 
@@ -92,12 +110,12 @@ function createPie(pieElementId, legendElementId, values) {
   var listData = [];
   var listTotal = 0;
   var offset = 0;
-  var color = ["cornflowerblue", "olivedrab", "orange", "tomato", "crimson", "purple", "turquoise", "forestgreen", "navy"];
+  var color = ["teal", "maroon", "lavender", "gold", "slategray", "magenta", "coral", "indigo", "orchid", "sienna", "cyan", "violet", "lime", "pink", "chocolate", "steelblue", "royalblue", "peru", "saddlebrown", "deeppink"];
   color = shuffle(color);
 
   values.forEach(function(value, index) {
       listData.push(Number(value.count));
-      $(legendElementId).append('<li class="' + value.continent + '"><em>' + value.label + '</em><span>' + value.count + '</span></li>');
+      $(legendElementId).append('<li class="' + value.continent + '"><em>' + value.label + '</em> <!--<em >' + value.continent + '</em>--><span>' + value.count + '</span></li>');
   });
 
   for (var i = 0; i < listData.length; i++) {
@@ -141,17 +159,6 @@ function addSlice(pieElementId, sliceSize, offset, sliceID, color) {
       'transform': 'rotate(' + sizeRotation + 'deg) translate3d(0,0,0)',
       'background-color': color
   });
-
-//   $(pieElementId + ' .' + sliceID).hover(function() {
-//     $(this).css({
-//       'transform': 'rotate(' + offset + 'deg) translate3d(0,0,0) scale(1, 1.05)',
-//       'cursor': 'poiner'
-//     });
-//   }, function() {
-//     $(this).css({
-//       'transform': 'rotate(' + offset + 'deg) translate3d(0,0,0)'
-//     });
-//   });
 }
 
 function shuffle(a) {
