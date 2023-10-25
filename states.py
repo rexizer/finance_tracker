@@ -15,3 +15,9 @@ class FSM_Spending(StatesGroup):
 
 class FSM_Cash(StatesGroup):
     cash = State()
+
+
+class FSM_ChangeCategories(StatesGroup):
+    add_or_delete = State()
+    add = State()
+    delete = State()

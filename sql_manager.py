@@ -56,10 +56,13 @@ async def change_cash_minus(user_id, quantity):
 
 
 async def insert_into_categories(user_id, category):
-    categories = await get_categories(user_id)
-    if category not in categories:
-        await sql.execute(f"INSERT INTO categories_{user_id} VALUES(?)", (category,))
-        await db.commit()
+    await sql.execute(f"INSERT INTO categories_{user_id} VALUES(?)", (category,))
+    await db.commit()
+
+
+async def delete_category(user_id, category):
+    await sql.execute(f"DELETE FROM categories_{user_id} WHERE category = '{category}'")
+    await db.commit()
 
 
 async def get_categories(user_id):
