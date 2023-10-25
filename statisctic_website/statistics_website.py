@@ -6,7 +6,7 @@ import json
 
 app = Flask(__name__)
 
-DATABASE = './finance.db'
+DATABASE = '../finance.db'
 
 
 def get_db():
@@ -28,7 +28,7 @@ def check_table_exists(sql, table_name):
     return sql.fetchone()
 
 
-def get_spending(sql, table_name):
+def get_data(sql, table_name):
     sql.row_factory = sqlite3.Row
     rows = sql.execute(f"SELECT * from {table_name}").fetchall()
     return json.dumps([dict(ix) for ix in rows], ensure_ascii=False)
@@ -36,20 +36,15 @@ def get_spending(sql, table_name):
 
 @app.route('/profile/<int:user_id>')
 def profile(user_id):
-    user_table = 'spending_' + str(user_id)
+    assets_table = 'assets_' + str(user_id)
+    spending_table = 'spending_' + str(user_id)
 
     sql = get_db().cursor()
-    if check_table_exists(sql, user_table):
+    if check_table_exists(sql, spending_table):
         user_info = {
-            'id': user_id,
-            'email': 'johndoe@example.com',
-            'age': 30,
-            'city': 'Москва',
-            'about': get_spending(sql, user_table),
-            'profile_picture': 'https://example.com/profile-picture.jpg'
+            'assets': get_data(sql, assets_table),
+            'spending': get_data(sql, spending_table)
         }
-        
-        print(get_spending(sql, user_table))
 
         sql.close()
         return render_template('index.html', user_info=user_info)

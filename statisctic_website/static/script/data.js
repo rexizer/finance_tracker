@@ -128,30 +128,14 @@
 //   'continent': item.continent
 // }));
 
-// let data = [
-
-// ]
-
-// // let data = [
-// //   {"date": "2023-10-25 12:34:45.873545", "spending": 400, "category": "да", "commentary": "да"}, 
-// //   {"date": "2023-10-25 12:38:21.667487", "spending": 500, "category": "да", "commentary": "да"},
-// //   {"date": "2023-10-25 12:43:58.870762", "spending": 400, "category": "продукты", "commentary": "хлеб"},
-// //   {"date": "2023-10-25 12:44:35.322798", "spending": 500, "category": "продукты", "commentary": "ладу"},
-// //   {"date": "2023-10-25 12:45:10.535477", "spending": 100, "category": "продукты", "commentary": "бесплалв"}
-// // ]
-let data = [
-  {"date": "2023-10-25 12:34:45.873545", "spending": 400, "category": "да", "commentary": "да"}, 
-  {"date": "2023-10-25 12:38:21.667487", "spending": 500, "category": "да", "commentary": "да"},
-  {"date": "2023-10-25 12:43:58.870762", "spending": 400, "category": "продукты", "commentary": "хлеб"},
-  {"date": "2023-10-25 12:44:35.322798", "spending": 500, "category": "продукты", "commentary": "ладу"},
-  {"date": "2023-10-25 12:45:10.535477", "spending": 100, "category": "продукты", "commentary": "бесплалв"}
-];
+let data2 = JSON.parse(document.querySelector("footer").innerHTML)
+console.log(data2)
 
 const monthss = [
   'январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'
 ];
 
-let modifiedData = data.map(item => {
+let data = data2.map(item => {
   const date = new Date(item.date);
   const monthName = monthss[date.getMonth()]; // Получаем название месяца
   return {
@@ -163,7 +147,7 @@ let modifiedData = data.map(item => {
   };
 });
 
-console.log(modifiedData);
+console.log(data);
 
 // console.log(modifiedData);
 
