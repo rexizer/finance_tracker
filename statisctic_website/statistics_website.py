@@ -6,7 +6,7 @@ import json
 
 app = Flask(__name__)
 
-DATABASE = 'finance.db'
+DATABASE = '../finance.db'
 
 
 def get_db():
