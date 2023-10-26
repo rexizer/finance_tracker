@@ -23,7 +23,7 @@ async def on_startup(_):
 
 @dp.message_handler(Command('start'))
 async def send_welcome(message: types.Message):
-    await message.answer("Выберите действие:", reply_markup=create_main_menu_keyboard(message.from_user.id))
+    await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
     await sql_manager.check_for_tables_existence(message.from_user.id)
 
 
@@ -53,6 +53,11 @@ async def change_main_categories(message: types.Message):
     await message.reply("Добавить или убрать категорию?", reply_markup=add_or_delete_keyboard)
     await sql_manager.check_for_tables_existence(message.from_user.id)
     await FSM_ChangeCategories.add_or_delete.set()
+
+
+@dp.message_handler(Command('Статистика'))
+async def send_statistic_website(message: types.Message):
+    await message.reply("Статистика:", reply_markup=create_statistic_keyboard(message.from_user.id))
 
 
 # FSM Assets part

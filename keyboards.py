@@ -1,19 +1,20 @@
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup
 
 
-def create_main_menu_keyboard(user_id):
-    assets_button = KeyboardButton('/Активы')
-    expenses_button = KeyboardButton('/Расходы')
-    replenish_button = KeyboardButton('/Пополнение')
-    change_categories = KeyboardButton('/Изменить_основные_категории')
-    statistics_button = KeyboardButton('/Статистика', web_app=WebAppInfo(url=f"https://google.com/{user_id}"))
+assets_button = KeyboardButton('/Активы')
+expenses_button = KeyboardButton('/Расходы')
+replenish_button = KeyboardButton('/Пополнение')
+change_categories = KeyboardButton('/Изменить_основные_категории')
+statistics_button = KeyboardButton('/Статистика')
 
-    main_menu_keyboard = ReplyKeyboardMarkup(row_width=1, resize_keyboard=True, input_field_placeholder="Выберите "
-                                                                                                        "действие")
-    main_menu_keyboard.row(assets_button, expenses_button, replenish_button)
-    main_menu_keyboard.add(change_categories, statistics_button)
+main_menu_keyboard = ReplyKeyboardMarkup(row_width=1, resize_keyboard=True, input_field_placeholder="Выберите "
+                                                                                                    "действие")
+main_menu_keyboard.row(assets_button, expenses_button, replenish_button)
+main_menu_keyboard.add(change_categories, statistics_button)
 
-    return main_menu_keyboard
+
+def create_statistic_keyboard(user_id):
+    return InlineKeyboardMarkup().add(InlineKeyboardButton("Сайт", url=f"http://127.0.0.1:5000/profile/{user_id}"))
 
 
 cancel_keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
