@@ -1,3 +1,76 @@
+const data2 = [
+  { category: 'Активы', label: 'North America', count: 367, month: 'январь', continent: 'North America' },
+  { category: 'Активы', label: 'Western Europe', count: 66, month: 'январь', continent: 'Western Europe' },
+  { category: 'Активы', label: 'Asia', count: 53, month: 'январь', continent: 'Asia' },
+  { category: 'Расходы', label: 'Latin America & Caribbean', count: 19, month: 'январь', continent: 'Latin America' },
+  { category: 'Расходы', label: 'Australia & New Zealand', count: 16, month: 'январь', continent: 'Australia' },
+  { category: 'Активы', label: 'Eastern Europe', count: 13, month: 'февраль', continent: 'Eastern Europe' },
+  { category: 'Активы', label: 'Middle East', count: 9, month: 'февраль', continent: 'Middle East' },
+  { category: 'Расходы', label: 'Russian Commonwealth', count: 13, month: 'февраль', continent: 'Russian Commonwealth' },
+  { category: 'Расходы', label: 'North America', count: 367, month: 'февраль', continent: 'North America' },
+  { category: 'Активы', label: 'Western Europe', count: 66, month: 'март', continent: 'Western Europe' },
+  { category: 'Расходы', label: 'Latin America & Caribbean', count: 19, month: 'март', continent: 'Latin America' },
+  { category: 'Активы', label: 'Asia', count: 53, month: 'март', continent: 'Asia' },
+  { category: 'Активы', label: 'Eastern Europe', count: 13, month: 'март', continent: 'Eastern Europe' },
+  { category: 'Расходы', label: 'Australia & New Zealand', count: 16, month: 'апрель', continent: 'Australia' },
+  { category: 'Активы', label: 'Middle East', count: 9, month: 'апрель', continent: 'Middle East' },
+  { category: 'Расходы', label: 'Russian Commonwealth', count: 13, month: 'апрель', continent: 'Russian Commonwealth' },
+  { category: 'Активы', label: 'Western Europe', count: 66, month: 'апрель', continent: 'Western Europe' },
+  { category: 'Расходы', label: 'North America', count: 367, month: 'май', continent: 'North America' },
+  { category: 'Активы', label: 'Asia', count: 53, month: 'май', continent: 'Asia' },
+  { category: 'Активы', label: 'Eastern Europe', count: 13, month: 'май', continent: 'Eastern Europe' },
+  { category: 'Расходы', label: 'Australia & New Zealand', count: 16, month: 'май', continent: 'Australia' },
+  { category: 'Активы', label: 'Middle East', count: 9, month: 'июнь', continent: 'Middle East' },
+  { category: 'Расходы', label: 'Russian Commonwealth', count: 13, month: 'июнь', continent: 'Russian Commonwealth' },
+  { category: 'Расходы', label: 'North America', count: 367, month: 'июнь', continent: 'North America' },
+  { category: 'Активы', label: 'Western Europe', count: 66, month: 'июнь', continent: 'Western Europe' },
+  { category: 'Активы', label: 'Asia', count: 53, month: 'июль', continent: 'Asia' },
+  { category: 'Расходы', label: 'Latin America & Caribbean', count: 19, month: 'июль', continent: 'Latin America' },
+  { category: 'Расходы', label: 'Australia & New Zealand', count: 16, month: 'июль', continent: 'Australia' },
+  { category: 'Расходы', label: 'Russian Commonwealth', count: 13, month: 'июль', continent: 'Russian Commonwealth' },
+  { category: 'Активы', label: 'Middle East', count: 9, month: 'август', continent: 'Middle East' },
+  { category: 'Расходы', label: 'North America', count: 367, month: 'август', continent: 'North America' },
+  { category: 'Активы', label: 'Western Europe', count: 66, month: 'август', continent: 'Western Europe' },
+  { category: 'Активы', label: 'Asia', count: 53, month: 'август', continent: 'Asia' },
+  { category: 'Расходы', label: 'Latin America & Caribbean', count: 19, month: 'сентябрь', continent: 'Latin America' },
+  { category: 'Активы', label: 'Eastern Europe', count: 13, month: 'сентябрь', continent: 'Eastern Europe' },
+  { category: 'Расходы', label: 'Australia & New Zealand', count: 16, month: 'сентябрь', continent: 'Australia' },
+  { category: 'Активы', label: 'Middle East', count: 9, month: 'сентябрь', continent: 'Middle East' },
+  { category: 'Расходы', label: 'Russian Commonwealth', count: 13, month: 'октябрь', continent: 'Russian Commonwealth' },
+  { category: 'Активы', label: 'North America', count: 367, month: 'октябрь', continent: 'North America' },
+  { category: 'Активы', label: 'Western Europe', count: 66, month: 'октябрь', continent: 'Western Europe' },
+  { category: 'Расходы', label: 'Asia', count: 53, month: 'октябрь', continent: 'Asia' },
+  { category: 'Расходы', label: 'Latin America & Caribbean', count: 19, month: 'ноябрь', continent: 'Latin America' },
+  { category: 'Активы', label: 'Eastern Europe', count: 13, month: 'ноябрь', continent: 'Eastern Europe' },
+  { category: 'Расходы', label: 'Australia & New Zealand', count: 16, month: 'ноябрь', continent: 'Australia' },
+  { category: 'Расходы', label: 'Middle East', count: 9, month: 'ноябрь', continent: 'Middle East' },
+  { category: 'Активы', label: 'Russian Commonwealth', count: 13, month: 'ноябрь', continent: 'Russian Commonwealth' },
+  { category: 'Расходы', label: 'North America', count: 367, month: 'декабрь', continent: 'North America' },
+  { category: 'Активы', label: 'Western Europe', count: 66, month: 'декабрь', continent: 'Western Europe' },
+  { category: 'Расходы', label: 'Asia', count: 53, month: 'январь', continent: 'Asia' },
+  { category: 'Активы', label: 'South America', count: 42, month: 'март', continent: 'South America' },
+  { category: 'Активы', label: 'Africa', count: 28, month: 'апрель', continent: 'Africa' },
+  { category: 'Активы', label: 'Oceania', count: 17, month: 'май', continent: 'Oceania' },
+  { category: 'Активы', label: 'Antarctica', count: 2, month: 'июнь', continent: 'Antarctica' },
+  { category: 'Активы', label: 'Caribbean', count: 15, month: 'июль', continent: 'Caribbean' },
+  { category: 'Активы', label: 'Central America', count: 30, month: 'август', continent: 'Central America' },
+  { category: 'Активы', label: 'Arctic', count: 9, month: 'сентябрь', continent: 'Arctic' },
+  { category: 'Активы', label: 'Northern Asia', count: 11, month: 'октябрь', continent: 'Northern Asia' },
+  { category: 'Активы', label: 'Northeast Asia', count: 24, month: 'ноябрь', continent: 'Northeast Asia' },
+  { category: 'Активы', label: 'Central Europe', count: 25, month: 'декабрь', continent: 'Central Europe' },
+  { category: 'Расходы', label: 'Southern Africa', count: 20, month: 'март', continent: 'Southern Africa' },
+  { category: 'Расходы', label: 'Eastern Africa', count: 22, month: 'апрель', continent: 'Eastern Africa' },
+  { category: 'Расходы', label: 'Western Africa', count: 31, month: 'май', continent: 'Western Africa' },
+  { category: 'Расходы', label: 'Northern Asia', count: 12, month: 'июнь', continent: 'Northern Asia' },
+  { category: 'Расходы', label: 'Eastern Europe', count: 18, month: 'июль', continent: 'Eastern Europe' },
+  { category: 'Расходы', label: 'Southern Asia', count: 37, month: 'август', continent: 'Southern Asia' },
+  { category: 'Расходы', label: 'Central Asia', count: 8, month: 'сентябрь', continent: 'Central Asia' },
+  { category: 'Расходы', label: 'Western Asia', count: 25, month: 'октябрь', continent: 'Western Asia' },
+  { category: 'Расходы', label: 'Northeast Asia', count: 16, month: 'ноябрь', continent: 'Northeast Asia' },
+  { category: 'Расходы', label: 'Southeast Asia', count: 31, month: 'декабрь', continent: 'Southeast Asia' }
+];
+
+
 let data_assets = JSON.parse(document.querySelector(".assets").innerHTML)
 let data_spending = JSON.parse(document.querySelector(".spending").innerHTML)
 
@@ -26,7 +99,7 @@ let data = data_spending.map(item => {
     category: "Расходы"
   };
 }).concat(data1);
-// data = data.concat(data2);
+data = data.concat(data2);
 
 
 // console.log(modifiedData);

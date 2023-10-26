@@ -1,11 +1,16 @@
 $(document).ready(function(){
+
   $('.slider-for').slick({
     centerPadding: '60px',
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
     fade: true,
-    asNavFor: '.slider-nav'
+    asNavFor: '.slider-nav',
+    onInit: function() {
+      // Set the initial transform value after the slider has initialized
+      $(".slick-track").css("transform", "translate3d(0, 0, 0) !important");
+    }
   });
   $('.slider-nav').slick({
     centerMode: true,
@@ -37,4 +42,14 @@ $(document).ready(function(){
       }
     ]
   });
+
+  setTimeout(function () {
+    var initialTransformValue = "translate3d(0, 0, 0)";
+    $(".slick-track").css("transform", initialTransformValue);
+  }, 1);
 });
+
+
+
+
+
