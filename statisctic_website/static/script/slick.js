@@ -1,15 +1,17 @@
-$(document).ready(function(){
+$(document).ready(function () {
   $('.slider-for').slick({
-    centerPadding: '60px',
+    centerMode: true,
+    centerPadding: '0',
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
     fade: true,
     asNavFor: '.slider-nav'
   });
+
   $('.slider-nav').slick({
     centerMode: true,
-    slidesToShow: 9,
+    slidesToShow: 7.5,
     slidesToScroll: 1,
     infinite: false,
     asNavFor: '.slider-for',
@@ -22,7 +24,7 @@ $(document).ready(function(){
         settings: {
           arrows: false,
           centerMode: true,
-          centerPadding: '40px',
+          centerPadding: '0',
           slidesToShow: 3
         }
       },
@@ -31,10 +33,15 @@ $(document).ready(function(){
         settings: {
           arrows: false,
           centerMode: true,
-          centerPadding: '40px',
+          centerPadding: '0',
           slidesToShow: 1
         }
       }
     ]
   });
-});
+
+  $('.slider-nav').on('afterChange', function(event, slick, currentSlide) {
+    // Manually center the selected slide
+    $('.slider-nav').slick('slickGoTo', currentSlide);
+  });
+})

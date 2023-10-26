@@ -67,8 +67,19 @@ function getUniqueContinents(data) {
 }
 
 function populateHomesList(listElementId, continents) {
-    continents.forEach(function(continent) {
-        $(listElementId).append('<li>' + continent + '</li>');
+    var color = ["teal", "maroon", "lavender", "gold", "slategray", "magenta", "coral", "indigo", "orchid", "sienna", "cyan", "violet", "lime", "pink", "chocolate", "steelblue", "royalblue", "peru", "saddlebrown", "deeppink"];
+    color = shuffle(color);
+    
+    continents.forEach(function(continent, index) {
+        var backgroundColor = color[index];
+        $(listElementId).append('<li class="parent-' + continent + '" style="background-color: ' + backgroundColor + '">' + continent + '</li>');
+        $('.parent-' + continent).hover(function () {
+                console.log( $('.' + continent))
+                $('.' + continent).css.animation = "glow2 1s infinite alternate;"
+            }, function () {
+                // out
+            }
+        );
     });
 }
 
@@ -117,7 +128,7 @@ function createPie(pieElementId, legendElementId, values) {
 
   values.forEach(function(value, index) {
       listData.push(Number(value.count));
-      $(legendElementId).append('<li><em>' + value.label + '</em><span>' + value.count + '</span></li>');
+      $(legendElementId).append('<li class="' + value.continent + '"><em>' + value.label + '</em><span>' + value.count + '</span></li>');
   });
 
   for (var i = 0; i < listData.length; i++) {
