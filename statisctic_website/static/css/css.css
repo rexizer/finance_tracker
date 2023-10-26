@@ -29,11 +29,15 @@ body{
   justify-content: center;
 }
 
+.blocks .slick-track{
+  width: auto !important;
+}
+
 .block{
   text-align: center;
   font-size: 10px !important;
   height: 100px;
-  width: 10%;
+  width: 200px;
   border: 2px solid #fff;
   transition: .1s linear border;
   border-radius: 10%;
