@@ -1,19 +1,17 @@
-$(document).ready(function(){
-
+$(document).ready(function () {
   $('.slider-for').slick({
-    centerPadding: '60px',
+    centerMode: true,
+    centerPadding: '0',
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
     fade: true,
-    asNavFor: '.slider-nav',
-    onInit: function() {
-      // Set the initial transform value after the slider has initialized
-      $(".slick-track").css("transform", "translate3d(0, 0, 0) !important");
-    }
+    asNavFor: '.slider-nav'
   });
+
   $('.slider-nav').slick({
     centerMode: true,
+    centerPadding: '0',
     slidesToShow: 9,
     slidesToScroll: 1,
     infinite: false,
@@ -27,7 +25,7 @@ $(document).ready(function(){
         settings: {
           arrows: false,
           centerMode: true,
-          centerPadding: '40px',
+          centerPadding: '0',
           slidesToShow: 3
         }
       },
@@ -36,20 +34,10 @@ $(document).ready(function(){
         settings: {
           arrows: false,
           centerMode: true,
-          centerPadding: '40px',
+          centerPadding: '0',
           slidesToShow: 1
         }
       }
     ]
   });
-
-  setTimeout(function () {
-    var initialTransformValue = "translate3d(0, 0, 0)";
-    $(".slick-track").css("transform", initialTransformValue);
-  }, 1);
 });
-
-
-
-
-
