@@ -169,7 +169,8 @@ body {
   font-size      : 13px;
   box-shadow     : 1px 1px 0 #452b2b;
   text-align     : left;
-  width          : 65%;
+  width          : 90%;
+  margin-bottom: 30px;
 }
 
 .pie-chart__legend li {
@@ -192,11 +193,27 @@ body {
   flex-direction: row;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 900px) {
   .pie-charts {
     flex-direction: column;
   }
 }
+
+@media (max-width: 500px) {
+  header h1{
+    font-size: 20px;
+  }
+
+  .pie-chart--wrapper {
+    width: 300px;
+  }
+
+  .homes-list{
+    transform: scale(.9);
+    width: auto !important;
+  }
+}
+
 
 
 .homes-list {
@@ -256,6 +273,15 @@ body {
   }
   100% {
     box-shadow: 0 0 20px rgba(52, 152, 219, 0.7); /* Glowing shadow state */
+  }
+}
+
+@keyframes glow2 {
+  0% {
+    background-color: yellow;
+  }
+  100% {
+    background-color: blue; /* Glowing shadow state */
   }
 }
 
