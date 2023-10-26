@@ -16,11 +16,12 @@ var pie = d3.layout.pie()
   .value(function(d){ return d.count; })
   .sort(null);
 
-var w = 50, h = 50;
 
-var outerRadiusArc = w / 2;
-var innerRadiusArc = 115;
-var shadowWidth = 15;
+  var w = 50, h = 50;
+
+  var outerRadiusArc = w / 2;
+  var innerRadiusArc = w/3;
+  var shadowWidth = w/10;
 
 var outerRadiusArcShadow = innerRadiusArc + 1;
 var innerRadiusArcShadow = innerRadiusArc - shadowWidth;

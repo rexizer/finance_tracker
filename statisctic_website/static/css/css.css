@@ -37,7 +37,7 @@ body{
   text-align: center;
   font-size: 10px !important;
   height: 100px;
-  width: 200px;
+  width: 200px !important;
   border: 2px solid #fff;
   transition: .1s linear border;
   border-radius: 10%;
@@ -65,7 +65,7 @@ body{
 }
 
 .chart-container{
-  padding: 25px;
+  padding: 0 25px;
 }
 
 .shadow {
@@ -208,7 +208,7 @@ body{
   color      : #fff;
   font-weight: lighter;
   font-size  : 15px;
-  line-height: 15x;
+  line-height: 15px;
   -moz-line-height: 15px;
   margin     : 2px;
   padding    : 20px 10px;
