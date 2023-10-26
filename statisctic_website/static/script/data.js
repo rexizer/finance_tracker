@@ -102,15 +102,7 @@ let data = data_spending.map(item => {
 data = data.concat(data2);
 
 
-// console.log(modifiedData);
 
-
-
-
-// let data = {{ user_info.about }};
-
-// let data = document.querySelector("footer").innerHTML
-// console.log(data)
 
 const months = data.map(item => item.month);
 const createdBlocks = {}; // Объект для отслеживания уже созданных блоков

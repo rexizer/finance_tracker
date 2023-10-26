@@ -67,8 +67,12 @@ function getUniqueContinents(data) {
 }
 
 function populateHomesList(listElementId, continents) {
-    continents.forEach(function(continent) {
-        $(listElementId).append('<li>' + continent + '</li>');
+    var color = ["teal", "maroon", "lavender", "gold", "slategray", "magenta", "coral", "indigo", "orchid", "sienna", "cyan", "violet", "lime", "pink", "chocolate", "steelblue", "royalblue", "peru", "saddlebrown", "deeppink"];
+    color = shuffle(color);
+    
+    continents.forEach(function(continent, index) {
+        var backgroundColor = color[index];
+        $(listElementId).append('<li style="background-color: ' + backgroundColor + '">' + continent + '</li>');
     });
 }
 
