@@ -11,8 +11,7 @@ $(document).ready(function () {
 
   $('.slider-nav').slick({
     centerMode: true,
-    centerPadding: '0',
-    slidesToShow: 9,
+    slidesToShow: 7.5,
     slidesToScroll: 1,
     infinite: false,
     asNavFor: '.slider-for',
@@ -40,4 +39,9 @@ $(document).ready(function () {
       }
     ]
   });
-});
+
+  $('.slider-nav').on('afterChange', function(event, slick, currentSlide) {
+    // Manually center the selected slide
+    $('.slider-nav').slick('slickGoTo', currentSlide);
+  });
+})

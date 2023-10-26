@@ -24,31 +24,26 @@ body {
   font-family     : sans-serif;
 }
 
-.blocks {
-  display        : flex;
-  justify-content: center;
-}
 
 .blocks .slick-track {
   width: auto !important;
   display: flex;
-  /* transform: translate3d(0px, 0px, 0px) !important; */
 }
 
 .blocks .slick-list.draggable{
   width: 100% !important;
-  padding: 0 !important;
+  padding: 0 0 0 40px !important;
 }
 
 .block {
   text-align    : center;
   font-size     : 10px !important;
   height        : 100px;
-  width         : 200px !important;
+  width         : 100px !important;
   border        : 2px solid #fff;
   transition    : .1s linear border;
   border-radius : 10%;
-  padding       : 5px 5px;
+  padding       : 10px;
   letter-spacing: .1rem;
   margin-right  : 20px;
   cursor: pointer;
