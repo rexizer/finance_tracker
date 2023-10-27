@@ -70,64 +70,61 @@ months.forEach(month => {
 
 
 
-const wrappers = document.querySelector('.wrappers'); // Получаем элемент с классом 'wrappers'
+// const wrappers = document.querySelector('.wrappers'); // Получаем элемент с классом 'wrappers'
+// let processedMonths = [];
 
-months.forEach(month => {
-  // Создаем элемент .wrapper
-  const wrapper = document.createElement('div');
-  wrapper.classList.add('wrapper');
+// months.forEach(month => {
 
-  // Создаем заголовок
-  const title = document.createElement('h1');
-  title.classList.add('wrapper-title');
-  title.textContent = `Member Stats for ${month}`;
+    // Array to track processed months
+    // if (processedMonths.indexOf(month) === -1) {
+    //     processedMonths.push(month); // Add the month to the processed list
+        // const wrapper = document.createElement('div');
+        // wrapper.classList.add('wrapper');
 
-  // Создаем контейнер для круговых диаграмм
-  const pieChartsContainer = document.createElement('div');
-  pieChartsContainer.classList.add('pie-charts');
+        // Создаем заголовок
+        // const title = document.createElement('h1');
+        // title.classList.add('wrapper-title');
+        // title.textContent = `Member Stats for ${month}`;
 
-  // Создаем круговую диаграмму для интересов
-  // const interestsChart = createPieChart('Interests');
-  // pieChartsContainer.appendChild(interestsChart);
+        // Создаем контейнер для круговых диаграмм
+        // const pieChartsContainer = document.createElement('div');
+        // pieChartsContainer.classList.add('pie-charts');
 
-  // Создаем круговую диаграмму для регионов
-  const regionsChart = createPieChart('Region');
-  pieChartsContainer.appendChild(regionsChart);
+        // // Создаем круговую диаграмму для регионов
+        // const regionsChart = createPieChart('Region');
+        // pieChartsContainer.appendChild(regionsChart);
 
-  // Добавляем созданные элементы в .wrapper
-  // wrapper.appendChild(title);
-  // wrapper.appendChild(pieChartsContainer);
+        // // Добавляем .wrapper в .wrappers
+        // wrappers.appendChild(wrapper);
+    // }
+// });
 
-  // Добавляем .wrapper в .wrappers
-  wrappers.appendChild(wrapper);
-});
+// function createPieChart(title) {
+//   // Создаем элемент .pieID--operations pie-chart--wrapper
+//   const pieChartWrapper = document.createElement('div');
+//   pieChartWrapper.classList.add('pieID--operations', 'pie-chart--wrapper');
 
-function createPieChart(title) {
-  // Создаем элемент .pieID--operations pie-chart--wrapper
-  const pieChartWrapper = document.createElement('div');
-  pieChartWrapper.classList.add('pieID--operations', 'pie-chart--wrapper');
+//   // Создаем заголовок
+//   const chartTitle = document.createElement('h2');
+//   chartTitle.textContent = title;
 
-  // Создаем заголовок
-  const chartTitle = document.createElement('h2');
-  chartTitle.textContent = title;
+//   // Создаем круговую диаграмму
+//   const pieChart = document.createElement('div');
+//   pieChart.classList.add('pie-chart');
 
-  // Создаем круговую диаграмму
-  const pieChart = document.createElement('div');
-  pieChart.classList.add('pie-chart');
+//   const pie = document.createElement('div');
+//   pie.classList.add('pie-chart__pie');
 
-  const pie = document.createElement('div');
-  pie.classList.add('pie-chart__pie');
+//   const legend = document.createElement('ul');
+//   legend.classList.add('pie-chart__legend');
 
-  const legend = document.createElement('ul');
-  legend.classList.add('pie-chart__legend');
+//   pieChart.appendChild(pie);
+//   pieChart.appendChild(legend);
 
-  pieChart.appendChild(pie);
-  pieChart.appendChild(legend);
+//   pieChartWrapper.appendChild(chartTitle);
+//   pieChartWrapper.appendChild(pieChart);
 
-  pieChartWrapper.appendChild(chartTitle);
-  pieChartWrapper.appendChild(pieChart);
-
-  return pieChartWrapper;
-}
+//   return pieChartWrapper;
+// }
 
 

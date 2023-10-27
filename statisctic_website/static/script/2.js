@@ -24,46 +24,64 @@ function clearCharts() {
 function createPieCharts(data) {
     var months = getUniqueMonths(data);
 
-    months.forEach(function(month) {
-        var monthData = filterDataByMonth(data, month);
+    var processedMonths = []; // Array to track processed months
 
-        var uniqueContinents = getUniqueContinents(monthData);
+    months.forEach(function (month) {
+        // Check if the month has already been processed
+        if (processedMonths.indexOf(month) === -1) {
+            processedMonths.push(month); // Add the month to the processed list
 
-        $('.wrapper').append(
-            '<h1>' + month + '</h1>' +
-            '<div class="pie-charts">' +
-                '<div class="pie-chart--wrapper">' +
-                    '<h2>Активы</h2>' +
-                    '<div class="pie-chart">' +
-                        // '<div class="pie-chart__pie" id="' + 'active-pie-' + month + '"></div>' +
-                        '<ul class="pie-chart__legend" id="' + 'active-legend-' + month + '"></ul>' +
+            var monthData = filterDataByMonth(data, month);
+            var uniqueContinents = getUniqueContinents(monthData);
+
+            $('.wrapper').append(
+                '<h1>' + month + '</h1>' +
+                '<div class="pie-charts">' +
+                    '<div class="pie-chart--wrapper">' +
+                        '<h2>Активы</h2>' +
+                        '<div class="pie-chart">' +
+                            // '<div class="pie-chart__pie" id="' + 'active-pie-' + month + '"></div>' +
+                            '<ul class="pie-chart__legend" id="' + 'active-legend-' + month + '"></ul>' +
+                        '</div>' +
+                        '<ul class="homes-list" id="' + 'homes-list-' + month + '"></ul>' +
                     '</div>' +
-                    '<ul class="homes-list" id="' + 'homes-list-' + month + '"></ul>' +
-                '</div>' +
-                '<div class="pie-chart--wrapper">' +
-                    '<h2>Расходы</h2>' +
-                    '<div class="pie-chart">' +
-                        '<div class="pie-chart__pie" id="' + 'expense-pie-' + month + '"></div>' +
-                        '<ul class="pie-chart__legend" id="' + 'expense-legend-' + month + '"></ul>' +
+                    '<div class="pie-chart--wrapper">' +
+                        '<h2>Расходы</h2>' +
+                        '<div class="pie-chart">' +
+                            '<div class="pie-chart__pie" id="' + 'expense-pie-' + month + '"></div>' +
+                            '<ul class="pie-chart__legend" id="' + 'expense-legend-' + month + '"></ul>' +
+                        '</div>' +
+                        '<ul class="homes-list" id="' + 'homes-list-' + month + '"></ul>' +
                     '</div>' +
-                    '<ul class="homes-list" id="' + 'homes-list-' + month + '"></ul>' +
-                '</div>' +
-            '</div>'
-        );
+                '</div>'
+            );
 
-        createPie('#active-pie-' + month, '#active-legend-' + month, filterDataByCategory(monthData, 'Активы'));
-        createPie('#expense-pie-' + month, '#expense-legend-' + month, filterDataByCategory(monthData, 'Расходы'));
-        populateHomesList('#homes-list-' + month, uniqueContinents);
+            createPie('#active-pie-' + month, '#active-legend-' + month, filterDataByCategory(monthData, 'Активы'));
+            createPie('#expense-pie-' + month, '#expense-legend-' + month, filterDataByCategory(monthData, 'Расходы'));
+            populateHomesList('#homes-list-' + month, uniqueContinents);
+        }
     });
 }
 
 
 
 function getUniqueContinents(data) {
-    var continents = data.map(function(item) {
-      return item.continent;
+    // var continents = data.map(function(item) {
+    return item.continent;
+    // });
+    // return [...new Set(continents)];
+}
+
+function getUniqueContinents(data) {
+    var uniqueContinents = [];
+    
+    data.forEach(function(item) {
+        if (uniqueContinents.indexOf(item.continent) === -1) {
+            uniqueContinents.push(item.continent);
+        }
     });
-    return [...new Set(continents)];
+
+    return uniqueContinents;
 }
 
 function populateHomesList(listElementId, continents) {
