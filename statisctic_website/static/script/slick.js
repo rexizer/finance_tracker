@@ -1,4 +1,7 @@
 $(document).ready(function () {
+  $(".wrapper").css("opacity", "1"); 
+  $(".wrapper").css("transition", "0s linear opacity !important");
+  
   $('.slider-for').slick({
     centerMode: true,
     centerPadding: '0',
@@ -41,6 +44,8 @@ $(document).ready(function () {
   });
 
   $('.slider-nav').on('afterChange', function(event, slick, currentSlide) {
+    $(".wrapper").css("opacity", "1"); 
+    $(".wrapper").css("transition", "0s linear opacity !important");
     // Manually center the selected slide
     $('.slider-nav').slick('slickGoTo', currentSlide);
   });
