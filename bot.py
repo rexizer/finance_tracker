@@ -21,12 +21,14 @@ async def on_startup(_):
     await sql_manager.connect()
 
 
+async def send_selection_message(message: types.Message):
+    await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
+
+
 @dp.message_handler(Command('start'))
 async def send_welcome(message: types.Message):
-    await message.answer("Привет, друг!\n Добро пожаловать в наш чат-бот finance tracker.")
-    to_pin = await message.answer(text)
-    await bot.pin_chat_message(chat_id = message.chat.id, message_id = to_pin.message_id)
-    await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
+    await bot.pin_chat_message(chat_id=message.chat.id, message_id=(await message.answer(help_text)).message_id)
+    await send_selection_message(message)
     await sql_manager.check_for_tables_existence(message.from_user.id)
 
 
@@ -63,13 +65,6 @@ async def send_statistic_website(message: types.Message):
     await message.reply("Статистика:", reply_markup=create_statistic_keyboard(message.from_user.id))
 
 
-@dp.message_handler(Command('Помощь'))
-async def help_message(message: types.Message):
-    await message.answer(text_help)
-    await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
-    await sql_manager.check_for_tables_existence(message.from_user.id)
-
-
 # FSM Assets part
 @dp.message_handler(state=FSM_Assets.stock_name)
 async def get_stock_name(message: types.Message, state: FSMContext):
@@ -82,7 +77,7 @@ async def get_stock_name(message: types.Message, state: FSMContext):
 
     else:
         await state.reset_state(with_data=False)
-        await send_welcome(message)
+        await send_selection_message(message)
 
 
 @dp.message_handler(state=FSM_Assets.quantity)
@@ -97,7 +92,7 @@ async def get_quantity(message: types.Message, state: FSMContext):
         except ValueError:
             await message.answer(text="Необходимо число")
 
-    await send_welcome(message)
+    await send_selection_message(message)
     await state.reset_state(with_data=False)
 
 
@@ -116,11 +111,11 @@ async def get_spent_amount(message: types.Message, state: FSMContext):
 
         except ValueError:
             await message.answer(text="Необходимо число")
-            await send_welcome(message)
+            await send_selection_message(message)
             await state.reset_state(with_data=False)
     else:
         await state.reset_state(with_data=False)
-        await send_welcome(message)
+        await send_selection_message(message)
 
 
 @dp.message_handler(state=FSM_Spending.category)
@@ -138,7 +133,7 @@ async def get_category(message: types.Message, state: FSMContext):
                 await message.answer("Что вы купили:", reply_markup=cancel_keyboard)
                 await FSM_Spending.last()
     else:
-        await send_welcome(message)
+        await send_selection_message(message)
         await state.reset_state(with_data=False)
 
 
@@ -153,7 +148,7 @@ async def get_consent_to_adding_button(message: types.Message, state: FSMContext
             await FSM_Spending.next()
             await message.answer("Что вы купили:", reply_markup=cancel_keyboard)
     else:
-        await send_welcome(message)
+        await send_selection_message(message)
         await state.reset_state(with_data=False)
 
 
@@ -166,7 +161,7 @@ async def get_commentary(message: types.Message, state: FSMContext):
             await sql_manager.insert_into_spending(message.from_user.id, data['spent_amount'], data['category'], answer)
         await message.answer("Добавлено")
 
-    await send_welcome(message)
+    await send_selection_message(message)
     await state.reset_state(with_data=False)
 
 
@@ -182,7 +177,7 @@ async def get_cash_amount(message: types.Message, state: FSMContext):
         await message.answer(text="Необходимо число")
 
     finally:
-        await send_welcome(message)
+        await send_selection_message(message)
         await state.reset_state(with_data=False)
 
 
@@ -202,7 +197,7 @@ async def get_commentary(message: types.Message, state: FSMContext):
             await FSM_ChangeCategories.last()
 
         case cancel_button.text:
-            await send_welcome(message)
+            await send_selection_message(message)
             await state.reset_state(with_data=False)
 
 
@@ -217,7 +212,7 @@ async def get_commentary(message: types.Message, state: FSMContext):
         else:
             await message.answer("Категория уже есть в основных")
 
-    await send_welcome(message)
+    await send_selection_message(message)
     await state.reset_state(with_data=False)
 
 
@@ -232,7 +227,7 @@ async def get_commentary(message: types.Message, state: FSMContext):
         else:
             await message.answer("Этой категории не было в основных")
 
-    await send_welcome(message)
+    await send_selection_message(message)
     await state.reset_state(with_data=False)
 
 
