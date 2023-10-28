@@ -1,5 +1,5 @@
 import logging
-from aiogram import Bot, Dispatcher, executor
+from aiogram import Bot, Dispatcher, executor, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Command
@@ -23,6 +23,9 @@ async def on_startup(_):
 
 @dp.message_handler(Command('start'))
 async def send_welcome(message: types.Message):
+    await message.answer("Привет, друг!\n Добро пожаловать в наш чат-бот finance tracker.")
+    to_pin = await message.answer(text)
+    await bot.pin_chat_message(chat_id = message.chat.id, message_id = to_pin.message_id)
     await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
     await sql_manager.check_for_tables_existence(message.from_user.id)
 
@@ -58,6 +61,13 @@ async def change_main_categories(message: types.Message):
 @dp.message_handler(Command('Статистика'))
 async def send_statistic_website(message: types.Message):
     await message.reply("Статистика:", reply_markup=create_statistic_keyboard(message.from_user.id))
+
+
+@dp.message_handler(Command('Помощь'))
+async def help_message(message: types.Message):
+    await message.answer(text_help)
+    await message.answer("Выберите действие:", reply_markup=main_menu_keyboard)
+    await sql_manager.check_for_tables_existence(message.from_user.id)
 
 
 # FSM Assets part
