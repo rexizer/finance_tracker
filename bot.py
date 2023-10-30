@@ -27,9 +27,18 @@ async def send_selection_message(message: types.Message):
 
 @dp.message_handler(Command('start'))
 async def send_welcome(message: types.Message):
-    await bot.pin_chat_message(chat_id=message.chat.id, message_id=(await message.answer(help_text)).message_id)
+    chat = await bot.get_chat(chat_id=message.chat.id)
+    pinned_message = chat.pinned_message
+    if pinned_message is None or pinned_message.text != help_text:
+        await bot.pin_chat_message(chat_id=message.chat.id, message_id=(await message.answer(help_text)).message_id)
+
     await send_selection_message(message)
     await sql_manager.check_for_tables_existence(message.from_user.id)
+
+
+@dp.message_handler(Command('help'))
+async def send_help(message: types.Message):
+    await message.answer(help_text)
 
 
 @dp.message_handler(Command('Активы'))
